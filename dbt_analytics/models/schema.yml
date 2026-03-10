@@ -1,0 +1,141 @@
+version: 2
+
+models:
+  # ═══════════════════════════════════════════════════════════
+  # PROJECT 1 - RETAIL
+  # ═══════════════════════════════════════════════════════════
+
+  - name: stg_p1_customers
+    description: "Staging - Cleaned customer data from retail database"
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_p1_products
+    description: "Staging - Cleaned product catalog"
+    columns:
+      - name: product_id
+        description: "Unique product identifier"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_p1_purchases
+    description: "Staging - Purchase transactions"
+    columns:
+      - name: purchase_id
+        description: "Unique purchase identifier"
+        tests:
+          - unique
+          - not_null
+
+  - name: mart_p1_sales
+    description: "Mart - Complete sales transactions with customer and product details"
+    columns:
+      - name: purchase_id
+        description: "Unique purchase identifier"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Foreign key to customer"
+      - name: product_id
+        description: "Foreign key to product"
+      - name: total_amount
+        description: "Total transaction amount"
+        tests:
+          - not_null
+
+  # ═══════════════════════════════════════════════════════════
+  # PROJECT 2 - NYC TAXI
+  # ═══════════════════════════════════════════════════════════
+
+  - name: stg_p2_taxi_trips
+    description: "Staging - NYC Green Taxi trip data"
+    columns:
+      - name: VendorID
+        description: "Taxi vendor identifier"
+      - name: trip_distance
+        description: "Distance traveled in miles"
+      - name: total_amount
+        description: "Total fare amount"
+
+  - name: mart_p2_taxi_daily
+    description: "Mart - Daily taxi metrics aggregated by vendor"
+    columns:
+      - name: trip_date
+        description: "Date of trips"
+        tests:
+          - not_null
+      - name: num_trips
+        description: "Number of trips on that day"
+      - name: total_revenue
+        description: "Total revenue for the day"
+
+  # ═══════════════════════════════════════════════════════════
+  # PROJECT 3 - PUB/SUB STREAMING
+  # ═══════════════════════════════════════════════════════════
+
+  - name: stg_p3_transactions
+    description: "Staging - Pub/Sub streaming retail transactions"
+    columns:
+      - name: transaction_id
+        description: "Unique transaction identifier"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Customer who made purchase"
+      - name: product_id
+        description: "Product purchased"
+      - name: total_amount
+        description: "Total transaction amount"
+
+  - name: mart_p3_transaction_daily
+    description: "Mart - Daily transaction summary by customer, category, and payment method"
+    columns:
+      - name: run_date
+        description: "Date of transactions"
+        tests:
+          - not_null
+      - name: num_transactions
+        description: "Count of transactions"
+      - name: total_revenue
+        description: "Total revenue"
+
+  # ═══════════════════════════════════════════════════════════
+  # MAHKAMAH AGUNG - COURT DECISIONS
+  # ═══════════════════════════════════════════════════════════
+
+  - name: stg_ma_putusan_list
+    description: "Staging - Mahkamah Agung putusan (court decisions) listing data"
+    columns:
+      - name: nomor
+        description: "Unique putusan number/identifier"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_ma_pdf_detail
+    description: "Staging - Extracted PDF details from putusan documents"
+    columns:
+      - name: nomor
+        description: "Putusan identifier"
+        tests:
+          - not_null
+
+  - name: mart_ma_putusan
+    description: "Mart - Complete putusan data with combined detail and PDF information"
+    columns:
+      - name: nomor
+        description: "Unique putusan number"
+        tests:
+          - unique
+          - not_null
+      - name: kategori
+        description: "Category of court case (e.g. Agama)"
+      - name: amar
+        description: "Court decision/verdict"
