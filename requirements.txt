@@ -1,0 +1,11 @@
+pdfplumber
+requests
+beautifulsoup4
+pandas
+google-cloud-bigquery
+psycopg2-binary
+apache-airflow-providers-google
+google-cloud-storage
+pyarrow
+lxml
+python-dateutil
