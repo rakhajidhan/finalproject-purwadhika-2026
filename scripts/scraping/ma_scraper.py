@@ -1,18 +1,19 @@
 """
 ma_scraper.py
 =============
-All-in-one pipeline for Mahkamah Agung Putusan (Kategori: Agama).
+All-in-one pipeline for Mahkamah Agung Putusan (all categories, front page only).
 
 Pipeline flow (all in this file):
-    1. scrape_listing()     → scrape list pages for a given month
-    2. scrape_detail()      → scrape detail fields for each putusan
-    3. download_pdf()       → download each PDF → upload to GCS
-    4. extract_pdf_text()   → extract structured text from PDF bytes
-    5. scrape_list()        → main entry point called by Airflow DAG
+    1. scrape_listing_frontpage() → scrape the single front-page listing for a given year
+    2. scrape_detail()            → scrape detail fields for each putusan
+    3. download_pdf()             → download each PDF → upload to GCS
+    4. extract_pdf_text()         → extract structured text from PDF bytes
+    5. scrape_list()              → main entry point called by Airflow DAG
 
-Target months: November 2024, December 2024, January 2025, February 2025
-GCS bucket   : jcdeah007-bucket
-GCS folder   : finalproject_rakhajidhan/mahkamah_agung/pdf/
+Target URL  : https://putusan3.mahkamahagung.go.id/direktori/index/tahunjenis/putus/tahun/YYYY.html
+              (front page only — no month/page pagination)
+GCS bucket  : jcdeah007-bucket
+GCS folder  : finalproject_rakhajidhan/mahkamah_agung/pdf/
 """
 
 import os
@@ -57,14 +58,7 @@ HEADERS = {
     )
 }
 
-# Months to process — used when Airflow calls scrape_list(year=2024)
-# without a specific month, it processes all months for that year
-BATCH_MONTHS = [
-    {"year": 2024, "month": 11},
-    {"year": 2024, "month": 12},
-    {"year": 2025, "month":  1},
-    {"year": 2025, "month":  2},
-]
+# No month/page batching — scrape front page per year only
 
 
 # ─────────────────────────────────────────────────────────────
@@ -103,49 +97,30 @@ def gcs_blob_exists(bucket, blob_name: str) -> bool:
 
 
 # ─────────────────────────────────────────────────────────────
-# SECTION 2: SCRAPE LISTING PAGES
+# SECTION 2: SCRAPE FRONT-PAGE LISTING
 # ─────────────────────────────────────────────────────────────
 
-def get_listing_url(year: int, month: int, page: int = 1) -> str:
+def get_frontpage_url(year: int) -> str:
     """
-    Build the correct direktori URL for Perdata Agama by year/month/page.
-    Pattern: /direktori/index/kategori/perdata-agama-1/tahunjenis/putus/tahun/YYYY/bulan/MM/page/N.html
+    Build the front-page direktori URL for a given year (no category/month/page filter).
+    Pattern: /direktori/index/tahunjenis/putus/tahun/YYYY.html
     """
-    return (
-        f"{BASE_URL}/direktori/index/kategori/perdata-agama-1"
-        f"/tahunjenis/putus/tahun/{year}/bulan/{month:02d}/page/{page}.html"
-    )
+    return f"{BASE_URL}/direktori/index/tahunjenis/putus/tahun/{year}.html"
 
 
-def get_total_pages(year: int, month: int) -> int:
-    """Detect the total number of result pages for a given year/month."""
-    url  = get_listing_url(year, month, page=1)
-    resp = safe_get(url)
-    soup = BeautifulSoup(resp.text, "html.parser")
-
-    pages = []
-    for a in soup.select("ul.pagination li a"):
-        try:
-            pages.append(int(a.get_text(strip=True)))
-        except ValueError:
-            continue
-
-    total = max(pages) if pages else 1
-    logger.info(f"  [{year}-{month:02d}] Total pages: {total}")
-    return total
-
-
-def scrape_listing_page(year: int, month: int, page: int) -> list:
+def scrape_listing_frontpage(year: int) -> list:
     """
-    Scrape one listing page and return basic row info:
-    nomor, judul, url_detail, tahun, bulan
+    Scrape the single front-page listing for a given year.
+    No pagination — only the front page is fetched.
+    Returns list of dicts: nomor, judul, url_detail, tahun.
     """
-    url  = get_listing_url(year, month, page)
+    url  = get_frontpage_url(year)
+    logger.info(f"  Fetching front page: {url}")
     resp = safe_get(url)
     soup = BeautifulSoup(resp.text, "html.parser")
 
     items = soup.select("div.spost.clearfix") or soup.select("div.info-box")
-    logger.info(f"  [{year}-{month:02d}] Page {page}: {len(items)} items found")
+    logger.info(f"  [{year}] Front page: {len(items)} items found")
 
     rows = []
     for item in items:
@@ -166,7 +141,7 @@ def scrape_listing_page(year: int, month: int, page: int) -> list:
                 "judul":      judul,
                 "url_detail": detail_url,
                 "tahun":      year,
-                "bulan":      month,
+                "bulan":      None,   # not applicable for front-page scrape
             })
         except Exception as e:
             logger.warning(f"  Listing parse error: {e}")
@@ -427,89 +402,74 @@ def scrape_list(year: int, month: int = None) -> pd.DataFrame:
     """
     Main pipeline function — called by Airflow PythonOperator.
 
-    For each month batch:
-      1. Scrape listing pages
-      2. Scrape detail for each putusan
-      3. Download PDF → upload to GCS → extract text
+    Scrapes the front-page listing for the given year (single page, no pagination).
+    The `month` parameter is accepted for DAG compatibility but is ignored —
+    the front page is not filterable by month.
+
+    For each putusan on the front page:
+      1. Scrape detail page
+      2. Download PDF → upload to GCS → extract text
     Returns a single merged DataFrame ready for BigQuery loading.
 
     Args:
-        year  : Target year (e.g. 2024)
-        month : Target month (1-12). If None, process all months in BATCH_MONTHS for that year.
+        year  : Target year (e.g. 2026)
+        month : Ignored — kept for DAG interface compatibility.
     """
-    # Determine batches to run
-    if month:
-        batches = [{"year": year, "month": month}]
-    else:
-        batches = [b for b in BATCH_MONTHS if b["year"] == year]
+    logger.info(f"\n{'='*50}")
+    logger.info(f" Processing front page: year={year} (all categories)")
+    logger.info(f"{'='*50}")
 
-    if not batches:
-        logger.warning(f"No configured batches found for year={year}, month={month}")
-        return pd.DataFrame()
-
-    # GCS client (shared across all batches)
+    # GCS client
     storage_client = storage.Client()
     bucket = storage_client.bucket(BUCKET_NAME)
-
     os.makedirs(LOCAL_TMP, exist_ok=True)
+
+    # ── Step 1: Scrape front-page listing ──
+    try:
+        listing_rows = scrape_listing_frontpage(year)
+    except Exception as e:
+        logger.error(f"  Front-page listing scrape failed: {e}")
+        return pd.DataFrame()
+
+    if not listing_rows:
+        logger.warning("No items found on the front page.")
+        return pd.DataFrame()
+
     all_records = []
 
-    for batch in batches:
-        y, m = batch["year"], batch["month"]
-        logger.info(f"\n{'='*50}")
-        logger.info(f" Processing batch: {y}-{m:02d} (Agama)")
-        logger.info(f"{'='*50}")
+    for row in listing_rows:
+        nomor = row.get("nomor", "unknown")
+        logger.info(f"  Processing: {nomor}")
 
+        # ── Step 2: Scrape detail page ──
+        time.sleep(0.5)
         try:
-            total_pages = get_total_pages(y, m)
+            detail = scrape_detail(row["url_detail"])
+            row.update(detail)
         except Exception as e:
-            logger.error(f"  Cannot determine total pages for {y}-{m}: {e}")
-            continue
+            logger.warning(f"  Detail failed for {nomor}: {e}")
 
-        for page in range(1, total_pages + 1):
-            logger.info(f"\n  --- Page {page}/{total_pages} ---")
-
+        # ── Step 3: PDF pipeline (download + upload + extract) ──
+        pdf_url = row.get("pdf_url")
+        if pdf_url:
+            time.sleep(0.5)
             try:
-                listing_rows = scrape_listing_page(y, m, page)
+                pdf_result = process_pdf(nomor, pdf_url, bucket)
+                row.update(pdf_result)
             except Exception as e:
-                logger.error(f"  Listing scrape failed (page {page}): {e}")
-                continue
+                logger.warning(f"  PDF pipeline failed for {nomor}: {e}")
+        else:
+            logger.warning(f"  No PDF URL found for: {nomor}")
 
-            for row in listing_rows:
-                nomor = row.get("nomor", "unknown")
-                logger.info(f"  Processing: {nomor}")
+        # ── Step 4: Add metadata ──
+        row["run_date"]   = datetime.utcnow().date().isoformat()
+        row["kategori"]   = "All"
+        row["scraped_at"] = datetime.utcnow().isoformat()
 
-                # ── Step 1: Scrape detail page ──
-                time.sleep(0.5)
-                try:
-                    detail = scrape_detail(row["url_detail"])
-                    row.update(detail)
-                except Exception as e:
-                    logger.warning(f"  Detail failed for {nomor}: {e}")
-
-                # ── Step 2: PDF pipeline (download + upload + extract) ──
-                pdf_url = row.get("pdf_url")
-                if pdf_url:
-                    time.sleep(0.5)
-                    try:
-                        pdf_result = process_pdf(nomor, pdf_url, bucket)
-                        row.update(pdf_result)
-                    except Exception as e:
-                        logger.warning(f"  PDF pipeline failed for {nomor}: {e}")
-                else:
-                    logger.warning(f"  No PDF URL found for: {nomor}")
-
-                # ── Step 3: Add metadata ──
-                row["run_date"]   = datetime.utcnow().date().isoformat()
-                row["kategori"]   = "Agama"
-                row["scraped_at"] = datetime.utcnow().isoformat()
-
-                all_records.append(row)
-
-            time.sleep(1)  # polite delay between pages
+        all_records.append(row)
 
     if not all_records:
-        logger.warning("No records collected across all batches.")
+        logger.warning("No records collected.")
         return pd.DataFrame()
 
     df = pd.DataFrame(all_records)
@@ -531,7 +491,7 @@ def scrape_list(year: int, month: int = None) -> pd.DataFrame:
 # ─────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    # Test scraping November 2024 only
-    df = scrape_list(year=2024, month=11)
+    # Test scraping the 2026 front page
+    df = scrape_list(year=2026)
     print(f"\nResult: {len(df)} records")
-    print(df[["nomor", "tingkat_proses", "amar", "gcs_uri"]].head(5))
+    print(df[["nomor", "tingkat_proses", "amar", "gcs_uri"]].head(10))

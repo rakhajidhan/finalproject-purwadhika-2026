@@ -1,19 +1,3 @@
-"""
-mahkamah_agung_dag.py
-=====================
-Single DAG for scraping Mahkamah Agung putusan (Kategori: Agama).
-
-Trigger this DAG manually 4 times with different params:
-    {"year": 2024, "month": 11}
-    {"year": 2024, "month": 12}
-    {"year": 2025, "month": 1}
-    {"year": 2025, "month": 2}
-
-Pipeline:
-    scrape_and_extract  →  load_to_bigquery
-    (on failure → discord alert)
-"""
-
 import logging
 import requests
 import pandas as pd
@@ -32,17 +16,8 @@ from load.ma_bigquery_loader import load_to_bigquery  # type: ignore
 logger = logging.getLogger(__name__)
 
 
-# ─────────────────────────────────────────────────────────────
-# CONFIG
-# ─────────────────────────────────────────────────────────────
+DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1480950650014531740/UCX_Ykp2nI0C5OdrNvFEPEdQreFB214wBNNHgi-0Cyl-uRj20IA0RIp3_k1ennpupBte"
 
-# ⚠️ Replace with your actual Discord webhook URL
-DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN"
-
-
-# ─────────────────────────────────────────────────────────────
-# DISCORD ALERT
-# ─────────────────────────────────────────────────────────────
 
 def send_discord_alert(context: dict):
     """Sends a Discord notification when a task fails."""
@@ -82,23 +57,22 @@ def send_discord_alert(context: dict):
 
 def task_scrape_and_extract(**context):
     """
-    Task 1: Scrape listing + detail + PDF for the given year/month.
-    Reads year and month from DAG params at trigger time.
+    Task 1: Scrape front-page listing + detail + PDF for the given year.
+    Reads year from DAG params at trigger time.
     Pushes result DataFrame as JSON into XCom.
     """
-    year  = context["params"]["year"]
-    month = context["params"]["month"]
+    year = context["params"]["year"]
 
-    logger.info(f"Starting scrape: {year}-{month:02d} (Agama)")
+    logger.info(f"Starting front-page scrape: year={year} (all categories)")
 
-    df = scrape_list(year=year, month=month)
+    df = scrape_list(year=year)
 
     if df.empty:
-        logger.warning(f"No data scraped for {year}-{month:02d}")
+        logger.warning(f"No data scraped for year={year}")
         context["ti"].xcom_push(key="scraped_data", value=None)
         return
 
-    logger.info(f"Scraped {len(df)} records for {year}-{month:02d}")
+    logger.info(f"Scraped {len(df)} records for year={year}")
     context["ti"].xcom_push(
         key="scraped_data",
         value=df.to_json(orient="records", date_format="iso"),
@@ -140,14 +114,13 @@ default_args = {
 with DAG(
     dag_id="mahkamah_agung_pipeline",
     default_args=default_args,
-    description="Scrape Mahkamah Agung putusan Agama — triggered manually per month batch",
+    description="Scrape Mahkamah Agung putusan front page — triggered manually per year",
     start_date=datetime(2026, 2, 1),
     schedule_interval=None,
     catchup=False,
-    tags=["mahkamah_agung", "agama", "scraping", "final_project"],
+    tags=["mahkamah_agung", "scraping", "final_project"],
     params={
-        "year":  Param(2024, type="integer", description="Year to scrape (e.g. 2024)"),
-        "month": Param(11,   type="integer", description="Month to scrape (1-12)"),
+        "year": Param(2026, type="integer", description="Year to scrape (e.g. 2026)"),
     },
 ) as dag:
 
