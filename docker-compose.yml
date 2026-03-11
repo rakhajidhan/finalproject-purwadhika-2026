@@ -9,6 +9,7 @@ services:
       POSTGRES_DB: airflow
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
+      - ./scripts/etl:/docker-entrypoint-initdb.d   # auto-runs init_retail_db.sql on first startup
     ports:
       - "5434:5432"
     restart: always
@@ -27,6 +28,7 @@ services:
       AIRFLOW__WEBSERVER__SECRET_KEY: "supersecretkey123"
       PYTHONPATH: /opt/airflow
       GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/service-account.json
+      DISCORD_WEBHOOK_URL: ${DISCORD_WEBHOOK_URL}
     volumes:
       - ./dags:/opt/airflow/dags
       - ./scripts:/opt/airflow/scripts
@@ -57,6 +59,7 @@ services:
       AIRFLOW__WEBSERVER__SECRET_KEY: "supersecretkey123"
       PYTHONPATH: /opt/airflow
       GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/service-account.json
+      DISCORD_WEBHOOK_URL: ${DISCORD_WEBHOOK_URL}
     volumes:
       - ./dags:/opt/airflow/dags
       - ./scripts:/opt/airflow/scripts
@@ -80,6 +83,7 @@ services:
       AIRFLOW__WEBSERVER__SECRET_KEY: "supersecretkey123"
       PYTHONPATH: /opt/airflow
       GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/service-account.json
+      DISCORD_WEBHOOK_URL: ${DISCORD_WEBHOOK_URL}
     volumes:
       - ./dags:/opt/airflow/dags
       - ./scripts:/opt/airflow/scripts

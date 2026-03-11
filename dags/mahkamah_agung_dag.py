@@ -20,7 +20,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.operators.python import PythonOperator # type: ignore
 from airflow.models.param import Param
 
 import sys

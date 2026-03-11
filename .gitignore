@@ -1,5 +1,1 @@
-# .gitignore to protect sensitive files
-echo service-account.json >> .gitignore
-echo __pycache__/ >> .gitignore
-echo *.pyc >> .gitignore
-echo .env >> .gitignore
+service-account.jsonecho __pycache__/echo *.pycecho .env
