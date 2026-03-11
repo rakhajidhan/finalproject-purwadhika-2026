@@ -1,0 +1,1169 @@
+[0m23:02:44.787739 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000168FD815350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000168FD814D90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000168FD815650>]}
+
+
+============================== 23:02:44.806767 | 4aa4d6ad-ed48-4c1f-b942-9ee18a74dd1b ==============================
+[0m23:02:44.806767 [info ] [MainThread]: Running with dbt=1.11.7
+[0m23:02:44.806767 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'D:\\Purwadhika\\Tugas\\jcdeah-007-final-project\\dbt_analytics', 'indirect_selection': 'eager', 'invocation_command': 'dbt debug', 'use_colors': 'True', 'use_experimental_parser': 'False', 'log_path': 'D:\\Purwadhika\\Tugas\\jcdeah-007-final-project\\dbt_analytics\\logs'}
+[0m23:02:44.847451 [info ] [MainThread]: dbt version: 1.11.7
+[0m23:02:44.847451 [info ] [MainThread]: python version: 3.11.6
+[0m23:02:44.848449 [info ] [MainThread]: python path: C:\Users\Anindya\AppData\Local\Programs\Python\Python311\python.exe
+[0m23:02:44.848449 [info ] [MainThread]: os info: Windows-10-10.0.26200-SP0
+[0m23:02:50.114353 [info ] [MainThread]: Using profiles dir at D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics
+[0m23:02:50.115690 [info ] [MainThread]: Using profiles.yml file at D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics\profiles.yml
+[0m23:02:50.116590 [info ] [MainThread]: Using dbt_project.yml file at D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics\dbt_project.yml
+[0m23:02:50.117589 [info ] [MainThread]: adapter type: bigquery
+[0m23:02:50.117589 [info ] [MainThread]: adapter version: 1.11.1
+[0m23:02:50.259980 [info ] [MainThread]: Configuration:
+[0m23:02:50.259980 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m23:02:50.261201 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m23:02:50.262199 [info ] [MainThread]: Required dependencies:
+[0m23:02:50.263204 [debug] [MainThread]: Executing "git --help"
+[0m23:02:50.319835 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Set `HEAD` or the index to a known state\n   switch     Switch branches\n   tag        Create, list, delete or verify tags\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m23:02:50.319835 [debug] [MainThread]: STDERR: "b''"
+[0m23:02:50.319835 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m23:02:50.319835 [info ] [MainThread]: Connection:
+[0m23:02:50.319835 [info ] [MainThread]:   method: service-account
+[0m23:02:50.319835 [info ] [MainThread]:   database: jcdeah-007
+[0m23:02:50.324652 [info ] [MainThread]:   execution_project: jcdeah-007
+[0m23:02:50.325437 [info ] [MainThread]:   schema: finalproject_rakhajidhan_datamart
+[0m23:02:50.325900 [info ] [MainThread]:   location: asia-southeast2
+[0m23:02:50.325900 [info ] [MainThread]:   priority: None
+[0m23:02:50.325900 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m23:02:50.325900 [info ] [MainThread]:   impersonate_service_account: None
+[0m23:02:50.329801 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m23:02:50.330810 [info ] [MainThread]:   job_retries: 1
+[0m23:02:50.331880 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m23:02:50.332811 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m23:02:50.332811 [info ] [MainThread]:   timeout_seconds: 300
+[0m23:02:50.333809 [info ] [MainThread]:   client_id: None
+[0m23:02:50.333809 [info ] [MainThread]:   token_uri: None
+[0m23:02:50.335610 [info ] [MainThread]:   compute_region: None
+[0m23:02:50.336619 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m23:02:50.337629 [info ] [MainThread]:   gcs_bucket: None
+[0m23:02:50.338057 [info ] [MainThread]:   dataproc_batch: None
+[0m23:02:50.339032 [info ] [MainThread]: Registered adapter: bigquery=1.11.1
+[0m23:02:50.876378 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m23:02:50.876378 [debug] [MainThread]: On debug: select 1 as id
+[0m23:02:50.876378 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m23:02:51.910595 [debug] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:05cb518d-0ce0-4ea7-848b-8cb8d4918f06&page=queryresults
+[0m23:02:52.053503 [debug] [MainThread]: SQL status: OK in 0.144 seconds
+[0m23:02:52.292314 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m23:02:52.293611 [info ] [MainThread]: [32mAll checks passed![0m
+[0m23:02:52.294663 [debug] [MainThread]: Command `dbt debug` succeeded at 23:02:52.294138 after 7.59 seconds
+[0m23:02:52.295186 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m23:02:52.295186 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000168F69B6E90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000168FD88AF90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000168F6C2EBD0>]}
+[0m23:02:52.296238 [debug] [MainThread]: Flushing usage events
+[0m23:02:53.691728 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m23:03:02.733143 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205A537EF90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205A537D290>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205A537FD90>]}
+
+
+============================== 23:03:02.740462 | 75e7e334-e5d1-4c81-aacc-5fb6e2019c64 ==============================
+[0m23:03:02.740462 [info ] [MainThread]: Running with dbt=1.11.7
+[0m23:03:02.742127 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'empty': 'False', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'D:\\Purwadhika\\Tugas\\jcdeah-007-final-project\\dbt_analytics', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'invocation_command': 'dbt run', 'use_colors': 'True', 'use_experimental_parser': 'False', 'log_path': 'D:\\Purwadhika\\Tugas\\jcdeah-007-final-project\\dbt_analytics\\logs'}
+[0m23:03:05.847935 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205A4AABD10>]}
+[0m23:03:05.899717 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205A1C48A90>]}
+[0m23:03:05.899717 [info ] [MainThread]: Registered adapter: bigquery=1.11.1
+[0m23:03:06.206431 [debug] [MainThread]: checksum: b80718358155fc17c3559352095564dd56ada1cc1a1c0ef2e62c857e71583775, vars: {}, profile: , target: , version: 1.11.7
+[0m23:03:06.206431 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m23:03:06.220274 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205B7B94F10>]}
+[0m23:03:07.899533 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205B8205610>]}
+[0m23:03:08.085568 [debug] [MainThread]: Wrote artifact WritableManifest to D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics\target\manifest.json
+[0m23:03:08.089854 [debug] [MainThread]: Wrote artifact SemanticManifest to D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics\target\semantic_manifest.json
+[0m23:03:08.135833 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205B84244D0>]}
+[0m23:03:08.137588 [info ] [MainThread]: Found 12 models, 45 data tests, 8 sources, 538 macros
+[0m23:03:08.137588 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205B767A410>]}
+[0m23:03:08.141358 [info ] [MainThread]: 
+[0m23:03:08.141358 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m23:03:08.141358 [info ] [MainThread]: 
+[0m23:03:08.141358 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m23:03:08.152653 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_jcdeah-007'
+[0m23:03:08.153659 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m23:03:09.732418 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_jcdeah-007_finalproject_rakhajidhan_datamart'
+[0m23:03:09.732418 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m23:03:11.079660 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205B8471590>]}
+[0m23:03:11.081818 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m23:03:11.248896 [debug] [Thread-1 (]: Began running node model.analytics.stg_adakami_stats
+[0m23:03:11.249902 [debug] [Thread-2 (]: Began running node model.analytics.stg_ma_pdf_detail
+[0m23:03:11.252703 [debug] [Thread-3 (]: Began running node model.analytics.stg_ma_putusan_list
+[0m23:03:11.253720 [debug] [Thread-4 (]: Began running node model.analytics.stg_p1_customers
+[0m23:03:11.257200 [info ] [Thread-1 (]: 1 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_adakami_stats  [RUN]
+[0m23:03:11.260158 [info ] [Thread-2 (]: 2 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_ma_pdf_detail  [RUN]
+[0m23:03:11.261697 [info ] [Thread-3 (]: 3 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_ma_putusan_list  [RUN]
+[0m23:03:11.263960 [info ] [Thread-4 (]: 4 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_p1_customers  [RUN]
+[0m23:03:11.266978 [debug] [Thread-1 (]: Acquiring new bigquery connection 'model.analytics.stg_adakami_stats'
+[0m23:03:11.269420 [debug] [Thread-2 (]: Acquiring new bigquery connection 'model.analytics.stg_ma_pdf_detail'
+[0m23:03:11.273015 [debug] [Thread-3 (]: Acquiring new bigquery connection 'model.analytics.stg_ma_putusan_list'
+[0m23:03:11.275358 [debug] [Thread-4 (]: Acquiring new bigquery connection 'model.analytics.stg_p1_customers'
+[0m23:03:11.277032 [debug] [Thread-1 (]: Began compiling node model.analytics.stg_adakami_stats
+[0m23:03:11.278776 [debug] [Thread-2 (]: Began compiling node model.analytics.stg_ma_pdf_detail
+[0m23:03:11.280504 [debug] [Thread-3 (]: Began compiling node model.analytics.stg_ma_putusan_list
+[0m23:03:11.281601 [debug] [Thread-4 (]: Began compiling node model.analytics.stg_p1_customers
+[0m23:03:11.319324 [debug] [Thread-1 (]: Writing injected SQL for node "model.analytics.stg_adakami_stats"
+[0m23:03:11.332471 [debug] [Thread-2 (]: Writing injected SQL for node "model.analytics.stg_ma_pdf_detail"
+[0m23:03:11.346524 [debug] [Thread-3 (]: Writing injected SQL for node "model.analytics.stg_ma_putusan_list"
+[0m23:03:11.366706 [debug] [Thread-4 (]: Writing injected SQL for node "model.analytics.stg_p1_customers"
+[0m23:03:11.380877 [debug] [Thread-1 (]: Began executing node model.analytics.stg_adakami_stats
+[0m23:03:11.439489 [debug] [Thread-2 (]: Began executing node model.analytics.stg_ma_pdf_detail
+[0m23:03:11.441244 [debug] [Thread-3 (]: Began executing node model.analytics.stg_ma_putusan_list
+[0m23:03:11.489550 [debug] [Thread-4 (]: Began executing node model.analytics.stg_p1_customers
+[0m23:03:11.762181 [debug] [Thread-2 (]: Writing runtime sql for node "model.analytics.stg_ma_pdf_detail"
+[0m23:03:11.767463 [debug] [Thread-3 (]: Writing runtime sql for node "model.analytics.stg_ma_putusan_list"
+[0m23:03:11.776478 [debug] [Thread-1 (]: Writing runtime sql for node "model.analytics.stg_adakami_stats"
+[0m23:03:11.778500 [debug] [Thread-4 (]: Writing runtime sql for node "model.analytics.stg_p1_customers"
+[0m23:03:11.784792 [debug] [Thread-2 (]: On model.analytics.stg_ma_pdf_detail: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_ma_pdf_detail"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_ma_pdf_detail`
+  OPTIONS()
+  as 
+
+select
+    nomor,
+    gcs_uri,
+    pdf_pages,
+    pdf_pihak,
+    pdf_isi_ringkas,
+    pdf_dasar_hukum,
+    pdf_amar_putusan,
+    run_date
+from `jcdeah-007.finalproject_rakhajidhan_mahkamahagung.putusan_pdf_detail`
+where nomor is not null;
+
+
+[0m23:03:11.788985 [debug] [Thread-3 (]: On model.analytics.stg_ma_putusan_list: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_ma_putusan_list"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_ma_putusan_list`
+  OPTIONS()
+  as 
+
+select
+    nomor,
+    judul,
+    url_detail,
+    tahun,
+    bulan,
+    tingkat_proses,
+    klasifikasi,
+    kata_kunci,
+    tahun_putusan,
+    tanggal_register,
+    lembaga_peradilan,
+    jenis_lembaga_peradilan,
+    hakim_ketua,
+    hakim_anggota,
+    panitera,
+    amar,
+    catatan_amar,
+    tanggal_musyawarah,
+    tanggal_dibacakan,
+    kaidah,
+    pdf_url,
+    gcs_uri,
+    kategori,
+    scraped_at,
+    run_date
+from `jcdeah-007.finalproject_rakhajidhan_mahkamahagung.putusan_list`
+where nomor is not null;
+
+
+[0m23:03:11.793256 [debug] [Thread-1 (]: On model.analytics.stg_adakami_stats: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_adakami_stats"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_adakami_stats`
+  OPTIONS()
+  as 
+
+select
+    *,
+    current_timestamp() as loaded_at
+from `jcdeah-007.finalproject_rakhajidhan_adakami.prep_adakami_statistics`;
+
+
+[0m23:03:11.797663 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m23:03:11.800175 [debug] [Thread-4 (]: On model.analytics.stg_p1_customers: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_p1_customers"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p1_customers`
+  OPTIONS()
+  as 
+
+select
+    customer_id,
+    name,
+    email,
+    city,
+    created_at,
+    updated_at
+from `jcdeah-007.finalproject_rakhajidhan_ecommerce_retails.customers`
+where customer_id is not null;
+
+
+[0m23:03:11.803194 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m23:03:11.806939 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m23:03:11.992259 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m23:03:15.814258 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:6ac476cc-4fd2-4eb0-8033-2c78bd1d4149&page=queryresults
+[0m23:03:15.816273 [error] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:6ac476cc-4fd2-4eb0-8033-2c78bd1d4149&page=queryresults
+[0m23:03:15.846784 [debug] [Thread-2 (]: Database Error in model stg_ma_pdf_detail (models\staging\mahkamah_agung\stg_ma_pdf_detail.sql)
+  Not found: Dataset jcdeah-007:finalproject_rakhajidhan_mahkamahagung was not found in location asia-southeast2
+  compiled code at target\run\analytics\models\staging\mahkamah_agung\stg_ma_pdf_detail.sql
+[0m23:03:15.848788 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205B82F6590>]}
+[0m23:03:15.856501 [error] [Thread-2 (]: 2 of 12 ERROR creating sql view model finalproject_rakhajidhan_datamart.stg_ma_pdf_detail  [[31mERROR[0m in 4.58s]
+[0m23:03:15.856940 [debug] [Thread-2 (]: Finished running node model.analytics.stg_ma_pdf_detail
+[0m23:03:15.856940 [debug] [Thread-2 (]: Began running node model.analytics.stg_p1_products
+[0m23:03:15.856940 [debug] [Thread-7 (]: Marking all children of 'model.analytics.stg_ma_pdf_detail' to be skipped because of status 'error'.  Reason: Database Error in model stg_ma_pdf_detail (models\staging\mahkamah_agung\stg_ma_pdf_detail.sql)
+  Not found: Dataset jcdeah-007:finalproject_rakhajidhan_mahkamahagung was not found in location asia-southeast2
+  compiled code at target\run\analytics\models\staging\mahkamah_agung\stg_ma_pdf_detail.sql.
+[0m23:03:15.856940 [info ] [Thread-2 (]: 5 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_p1_products . [RUN]
+[0m23:03:15.856940 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.analytics.stg_ma_pdf_detail, now model.analytics.stg_p1_products)
+[0m23:03:15.856940 [debug] [Thread-2 (]: Began compiling node model.analytics.stg_p1_products
+[0m23:03:15.873192 [debug] [Thread-2 (]: Writing injected SQL for node "model.analytics.stg_p1_products"
+[0m23:03:15.875192 [debug] [Thread-2 (]: Began executing node model.analytics.stg_p1_products
+[0m23:03:15.886266 [debug] [Thread-2 (]: Writing runtime sql for node "model.analytics.stg_p1_products"
+[0m23:03:15.889278 [debug] [Thread-2 (]: On model.analytics.stg_p1_products: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_p1_products"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p1_products`
+  OPTIONS()
+  as 
+
+select
+    product_id,
+    product_name,
+    category,
+    price,
+    created_at,
+    updated_at
+from `jcdeah-007.finalproject_rakhajidhan_ecommerce_retails.products`
+where product_id is not null;
+
+
+[0m23:03:15.890289 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m23:03:15.985805 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:ba07bfc1-3e1b-4dfe-a50f-2ff89c6c4e9f&page=queryresults
+[0m23:03:15.988099 [error] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:ba07bfc1-3e1b-4dfe-a50f-2ff89c6c4e9f&page=queryresults
+[0m23:03:15.999003 [debug] [Thread-3 (]: Database Error in model stg_ma_putusan_list (models\staging\mahkamah_agung\stg_ma_putusan_list.sql)
+  Not found: Dataset jcdeah-007:finalproject_rakhajidhan_mahkamahagung was not found in location asia-southeast2
+  compiled code at target\run\analytics\models\staging\mahkamah_agung\stg_ma_putusan_list.sql
+[0m23:03:16.000121 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205B8425050>]}
+[0m23:03:16.000121 [error] [Thread-3 (]: 3 of 12 ERROR creating sql view model finalproject_rakhajidhan_datamart.stg_ma_putusan_list  [[31mERROR[0m in 4.73s]
+[0m23:03:16.003650 [debug] [Thread-3 (]: Finished running node model.analytics.stg_ma_putusan_list
+[0m23:03:16.005241 [debug] [Thread-3 (]: Began running node model.analytics.stg_p1_purchases
+[0m23:03:16.007429 [debug] [Thread-7 (]: Marking all children of 'model.analytics.stg_ma_putusan_list' to be skipped because of status 'error'.  Reason: Database Error in model stg_ma_putusan_list (models\staging\mahkamah_agung\stg_ma_putusan_list.sql)
+  Not found: Dataset jcdeah-007:finalproject_rakhajidhan_mahkamahagung was not found in location asia-southeast2
+  compiled code at target\run\analytics\models\staging\mahkamah_agung\stg_ma_putusan_list.sql.
+[0m23:03:16.009424 [info ] [Thread-3 (]: 6 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_p1_purchases  [RUN]
+[0m23:03:16.012058 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.analytics.stg_ma_putusan_list, now model.analytics.stg_p1_purchases)
+[0m23:03:16.013694 [debug] [Thread-3 (]: Began compiling node model.analytics.stg_p1_purchases
+[0m23:03:16.024957 [debug] [Thread-3 (]: Writing injected SQL for node "model.analytics.stg_p1_purchases"
+[0m23:03:16.028423 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:2b14c482-1678-487b-add7-f370270e0f21&page=queryresults
+[0m23:03:16.029595 [debug] [Thread-3 (]: Began executing node model.analytics.stg_p1_purchases
+[0m23:03:16.041942 [debug] [Thread-3 (]: Writing runtime sql for node "model.analytics.stg_p1_purchases"
+[0m23:03:16.046207 [debug] [Thread-3 (]: On model.analytics.stg_p1_purchases: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_p1_purchases"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p1_purchases`
+  OPTIONS()
+  as 
+
+select
+    purchase_id,
+    customer_id,
+    product_id,
+    quantity,
+    created_at,
+    updated_at
+from `jcdeah-007.finalproject_rakhajidhan_ecommerce_retails.purchase`
+where purchase_id is not null;
+
+
+[0m23:03:16.047851 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m23:03:16.139534 [debug] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:896d5621-9f79-4a59-a8ab-caf4adda74f7&page=queryresults
+[0m23:03:16.237478 [debug] [Thread-4 (]: SQL status: OK in 0.211 seconds
+[0m23:03:16.455506 [debug] [Thread-1 (]: SQL status: OK in 0.318 seconds
+[0m23:03:16.465929 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205B847BBD0>]}
+[0m23:03:16.470453 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205B847A750>]}
+[0m23:03:16.470453 [info ] [Thread-4 (]: 4 of 12 OK created sql view model finalproject_rakhajidhan_datamart.stg_p1_customers  [[32mCREATE VIEW (0 processed)[0m in 5.19s]
+[0m23:03:16.470453 [info ] [Thread-1 (]: 1 of 12 OK created sql view model finalproject_rakhajidhan_datamart.stg_adakami_stats  [[32mCREATE VIEW (0 processed)[0m in 5.20s]
+[0m23:03:16.470453 [debug] [Thread-4 (]: Finished running node model.analytics.stg_p1_customers
+[0m23:03:16.470453 [debug] [Thread-1 (]: Finished running node model.analytics.stg_adakami_stats
+[0m23:03:16.470453 [debug] [Thread-4 (]: Began running node model.analytics.stg_p2_taxi_trips
+[0m23:03:16.470453 [debug] [Thread-1 (]: Began running node model.analytics.stg_p3_transactions
+[0m23:03:16.486167 [info ] [Thread-4 (]: 7 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_p2_taxi_trips  [RUN]
+[0m23:03:16.487755 [info ] [Thread-1 (]: 8 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_p3_transactions  [RUN]
+[0m23:03:16.489785 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly model.analytics.stg_p1_customers, now model.analytics.stg_p2_taxi_trips)
+[0m23:03:16.491878 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.analytics.stg_adakami_stats, now model.analytics.stg_p3_transactions)
+[0m23:03:16.492878 [debug] [Thread-4 (]: Began compiling node model.analytics.stg_p2_taxi_trips
+[0m23:03:16.494499 [debug] [Thread-1 (]: Began compiling node model.analytics.stg_p3_transactions
+[0m23:03:16.506177 [debug] [Thread-4 (]: Writing injected SQL for node "model.analytics.stg_p2_taxi_trips"
+[0m23:03:16.517066 [debug] [Thread-1 (]: Writing injected SQL for node "model.analytics.stg_p3_transactions"
+[0m23:03:16.519104 [debug] [Thread-4 (]: Began executing node model.analytics.stg_p2_taxi_trips
+[0m23:03:16.522863 [debug] [Thread-1 (]: Began executing node model.analytics.stg_p3_transactions
+[0m23:03:16.528834 [debug] [Thread-4 (]: Writing runtime sql for node "model.analytics.stg_p2_taxi_trips"
+[0m23:03:16.530843 [debug] [Thread-1 (]: Writing runtime sql for node "model.analytics.stg_p3_transactions"
+[0m23:03:16.542414 [debug] [Thread-4 (]: On model.analytics.stg_p2_taxi_trips: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_p2_taxi_trips"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p2_taxi_trips`
+  OPTIONS()
+  as 
+
+select
+    VendorID,
+    lpep_pickup_datetime,
+    lpep_dropoff_datetime,
+    store_and_fwd_flag,
+    RatecodeID,
+    PULocationID,
+    DOLocationID,
+    passenger_count,
+    trip_distance,
+    fare_amount,
+    extra,
+    mta_tax,
+    tip_amount,
+    tolls_amount,
+    ehail_fee,
+    improvement_surcharge,
+    total_amount,
+    payment_type,
+    trip_type,
+    congestion_surcharge,
+    run_date
+from `jcdeah-007.finalproject_rakhajidhan_ny_taxi_preparation.green_tripdata`
+where run_date is not null;
+
+
+[0m23:03:16.544939 [debug] [Thread-1 (]: On model.analytics.stg_p3_transactions: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_p3_transactions"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p3_transactions`
+  OPTIONS()
+  as 
+
+select
+    transaction_id,
+    event_type,
+    customer_id,
+    customer_name,
+    customer_city,
+    product_id,
+    product_name,
+    product_category,
+    unit_price,
+    quantity,
+    total_amount,
+    payment_method,
+    status,
+    published_at,
+    ingested_at,
+    run_date
+from `jcdeah-007.finalproject_rakhajidhan_pubsub_retail.retail_transactions_streaming`
+where transaction_id is not null;
+
+
+[0m23:03:16.546261 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m23:03:16.546261 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m23:03:18.231508 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:73e10d67-dbf5-4e69-8c8a-51fe48c11e5f&page=queryresults
+[0m23:03:18.433591 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:bb8bb409-8b78-4e32-a6ec-cc323457bbe5&page=queryresults
+[0m23:03:18.497139 [debug] [Thread-2 (]: SQL status: OK in 0.257 seconds
+[0m23:03:18.497139 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205B9988C90>]}
+[0m23:03:18.497139 [info ] [Thread-2 (]: 5 of 12 OK created sql view model finalproject_rakhajidhan_datamart.stg_p1_products  [[32mCREATE VIEW (0 processed)[0m in 2.64s]
+[0m23:03:18.497139 [debug] [Thread-2 (]: Finished running node model.analytics.stg_p1_products
+[0m23:03:18.497139 [debug] [Thread-2 (]: Began running node model.analytics.mart_ma_putusan
+[0m23:03:18.512939 [info ] [Thread-2 (]: 9 of 12 SKIP relation finalproject_rakhajidhan_datamart.mart_ma_putusan ........ [[33mSKIP[0m]
+[0m23:03:18.514289 [debug] [Thread-2 (]: Finished running node model.analytics.mart_ma_putusan
+[0m23:03:18.670785 [debug] [Thread-3 (]: SQL status: OK in 0.228 seconds
+[0m23:03:18.670785 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205B856C790>]}
+[0m23:03:18.670785 [info ] [Thread-3 (]: 6 of 12 OK created sql view model finalproject_rakhajidhan_datamart.stg_p1_purchases  [[32mCREATE VIEW (0 processed)[0m in 2.66s]
+[0m23:03:18.686680 [debug] [Thread-3 (]: Finished running node model.analytics.stg_p1_purchases
+[0m23:03:18.686680 [debug] [Thread-2 (]: Began running node model.analytics.mart_p1_sales
+[0m23:03:18.686680 [info ] [Thread-2 (]: 10 of 12 START sql table model finalproject_rakhajidhan_datamart.mart_p1_sales . [RUN]
+[0m23:03:18.686680 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.analytics.stg_p1_products, now model.analytics.mart_p1_sales)
+[0m23:03:18.686680 [debug] [Thread-2 (]: Began compiling node model.analytics.mart_p1_sales
+[0m23:03:18.697006 [debug] [Thread-2 (]: Writing injected SQL for node "model.analytics.mart_p1_sales"
+[0m23:03:18.699070 [debug] [Thread-2 (]: Began executing node model.analytics.mart_p1_sales
+[0m23:03:18.755461 [debug] [Thread-2 (]: Writing runtime sql for node "model.analytics.mart_p1_sales"
+[0m23:03:18.758013 [debug] [Thread-2 (]: On model.analytics.mart_p1_sales: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.mart_p1_sales"} */
+
+  
+    
+
+    create or replace table `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`mart_p1_sales`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      
+
+select
+    p.purchase_id,
+    c.customer_id,
+    c.name         as customer_name,
+    c.city         as customer_city,
+    c.email        as customer_email,
+    pr.product_id,
+    pr.product_name,
+    pr.category    as product_category,
+    pr.price       as unit_price,
+    p.quantity,
+    cast(pr.price as float64) * cast(p.quantity as float64) as total_amount,
+    p.created_at   as purchase_date,
+    current_timestamp() as dbt_loaded_at
+from `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p1_purchases` p
+inner join `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p1_customers` c
+    on p.customer_id = c.customer_id
+inner join `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p1_products` pr
+    on p.product_id = pr.product_id
+    );
+  
+[0m23:03:18.759027 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m23:03:18.858370 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:f1f38190-0e87-41f4-9126-dd46c57945c6&page=queryresults
+[0m23:03:18.861274 [debug] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:6c2e25f0-fc49-4c34-85fa-05f08ca515ab&page=queryresults
+[0m23:03:19.058670 [debug] [Thread-1 (]: SQL status: OK in 0.196 seconds
+[0m23:03:19.065488 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205B9DB3010>]}
+[0m23:03:19.066730 [info ] [Thread-1 (]: 8 of 12 OK created sql view model finalproject_rakhajidhan_datamart.stg_p3_transactions  [[32mCREATE VIEW (0 processed)[0m in 2.57s]
+[0m23:03:19.068459 [debug] [Thread-1 (]: Finished running node model.analytics.stg_p3_transactions
+[0m23:03:19.069576 [debug] [Thread-3 (]: Began running node model.analytics.mart_p3_transaction_daily
+[0m23:03:19.070763 [info ] [Thread-3 (]: 11 of 12 START sql table model finalproject_rakhajidhan_datamart.mart_p3_transaction_daily  [RUN]
+[0m23:03:19.071915 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.analytics.stg_p1_purchases, now model.analytics.mart_p3_transaction_daily)
+[0m23:03:19.072476 [debug] [Thread-3 (]: Began compiling node model.analytics.mart_p3_transaction_daily
+[0m23:03:19.079915 [debug] [Thread-3 (]: Writing injected SQL for node "model.analytics.mart_p3_transaction_daily"
+[0m23:03:19.081515 [debug] [Thread-3 (]: Began executing node model.analytics.mart_p3_transaction_daily
+[0m23:03:19.089519 [debug] [Thread-3 (]: Writing runtime sql for node "model.analytics.mart_p3_transaction_daily"
+[0m23:03:19.092373 [debug] [Thread-3 (]: On model.analytics.mart_p3_transaction_daily: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.mart_p3_transaction_daily"} */
+
+  
+    
+
+    create or replace table `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`mart_p3_transaction_daily`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      
+
+select
+    run_date,
+    customer_id,
+    customer_name,
+    customer_city,
+    product_category,
+    payment_method,
+    status,
+    count(*)            as num_transactions,
+    avg(quantity)       as avg_quantity,
+    avg(total_amount)   as avg_amount,
+    sum(total_amount)   as total_revenue,
+    current_timestamp() as dbt_loaded_at
+from `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p3_transactions`
+where transaction_id is not null
+group by
+    run_date,
+    customer_id,
+    customer_name,
+    customer_city,
+    product_category,
+    payment_method,
+    status
+    );
+  
+[0m23:03:19.093550 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m23:03:19.159899 [debug] [Thread-4 (]: SQL status: OK in 0.301 seconds
+[0m23:03:19.165892 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205A4AD3890>]}
+[0m23:03:19.167871 [info ] [Thread-4 (]: 7 of 12 OK created sql view model finalproject_rakhajidhan_datamart.stg_p2_taxi_trips  [[32mCREATE VIEW (0 processed)[0m in 2.68s]
+[0m23:03:19.168879 [debug] [Thread-4 (]: Finished running node model.analytics.stg_p2_taxi_trips
+[0m23:03:19.170866 [debug] [Thread-1 (]: Began running node model.analytics.mart_p2_taxi_daily
+[0m23:03:19.171491 [info ] [Thread-1 (]: 12 of 12 START sql table model finalproject_rakhajidhan_datamart.mart_p2_taxi_daily  [RUN]
+[0m23:03:19.172505 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.analytics.stg_p3_transactions, now model.analytics.mart_p2_taxi_daily)
+[0m23:03:19.172505 [debug] [Thread-1 (]: Began compiling node model.analytics.mart_p2_taxi_daily
+[0m23:03:19.178950 [debug] [Thread-1 (]: Writing injected SQL for node "model.analytics.mart_p2_taxi_daily"
+[0m23:03:19.180966 [debug] [Thread-1 (]: Began executing node model.analytics.mart_p2_taxi_daily
+[0m23:03:19.180966 [debug] [Thread-1 (]: Writing runtime sql for node "model.analytics.mart_p2_taxi_daily"
+[0m23:03:19.189065 [debug] [Thread-1 (]: On model.analytics.mart_p2_taxi_daily: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.mart_p2_taxi_daily"} */
+
+  
+    
+
+    create or replace table `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`mart_p2_taxi_daily`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      
+
+select
+    cast(lpep_pickup_datetime as date) as trip_date,
+    VendorID,
+    count(*)                as num_trips,
+    avg(passenger_count)    as avg_passengers,
+    avg(trip_distance)      as avg_distance,
+    avg(fare_amount)        as avg_fare,
+    avg(total_amount)       as avg_total,
+    sum(total_amount)       as total_revenue,
+    current_timestamp()     as dbt_loaded_at
+from `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p2_taxi_trips`
+where lpep_pickup_datetime is not null
+group by
+    cast(lpep_pickup_datetime as date),
+    VendorID
+    );
+  
+[0m23:03:19.189754 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m23:03:20.988900 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:8fd73f38-4e31-4485-9c9d-bb18f740104f&page=queryresults
+[0m23:03:21.718549 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:515e6bbf-f3e3-4903-b3d9-96a996d85675&page=queryresults
+[0m23:03:21.808533 [debug] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:c974b284-faac-46b6-9883-aad655cd4d3c&page=queryresults
+[0m23:03:22.502585 [debug] [Thread-2 (]: SQL status: OK in 1.502 seconds
+[0m23:03:22.589104 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205B99C3650>]}
+[0m23:03:22.589104 [info ] [Thread-2 (]: 10 of 12 OK created sql table model finalproject_rakhajidhan_datamart.mart_p1_sales  [[32mCREATE TABLE (219.0 rows, 4.4 KiB processed)[0m in 3.90s]
+[0m23:03:22.589104 [debug] [Thread-2 (]: Finished running node model.analytics.mart_p1_sales
+[0m23:03:22.992675 [debug] [Thread-3 (]: SQL status: OK in 1.273 seconds
+[0m23:03:23.072370 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205B8222250>]}
+[0m23:03:23.072370 [info ] [Thread-3 (]: 11 of 12 OK created sql table model finalproject_rakhajidhan_datamart.mart_p3_transaction_daily  [[32mCREATE TABLE (19.0 rows, 2.1 KiB processed)[0m in 4.00s]
+[0m23:03:23.072370 [debug] [Thread-3 (]: Finished running node model.analytics.mart_p3_transaction_daily
+[0m23:03:23.338326 [debug] [Thread-1 (]: SQL status: OK in 1.532 seconds
+[0m23:03:23.438677 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '75e7e334-e5d1-4c81-aacc-5fb6e2019c64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205B856EDD0>]}
+[0m23:03:23.438677 [info ] [Thread-1 (]: 12 of 12 OK created sql table model finalproject_rakhajidhan_datamart.mart_p2_taxi_daily  [[32mCREATE TABLE (1.9k rows, 90.1 MiB processed)[0m in 4.27s]
+[0m23:03:23.438677 [debug] [Thread-1 (]: Finished running node model.analytics.mart_p2_taxi_daily
+[0m23:03:23.438677 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m23:03:23.483756 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m23:03:23.484764 [debug] [MainThread]: Connection 'list_jcdeah-007' was properly closed.
+[0m23:03:23.484764 [debug] [MainThread]: Connection 'list_jcdeah-007_finalproject_rakhajidhan_datamart' was properly closed.
+[0m23:03:23.485767 [debug] [MainThread]: Connection 'model.analytics.mart_p2_taxi_daily' was properly closed.
+[0m23:03:23.485767 [debug] [MainThread]: Connection 'model.analytics.mart_p1_sales' was properly closed.
+[0m23:03:23.486760 [debug] [MainThread]: Connection 'model.analytics.mart_p3_transaction_daily' was properly closed.
+[0m23:03:23.486760 [debug] [MainThread]: Connection 'model.analytics.stg_p2_taxi_trips' was properly closed.
+[0m23:03:23.488057 [info ] [MainThread]: 
+[0m23:03:23.488057 [info ] [MainThread]: Finished running 4 table models, 8 view models in 0 hours 0 minutes and 15.35 seconds (15.35s).
+[0m23:03:23.491111 [debug] [MainThread]: Command end result
+[0m23:03:23.539407 [debug] [MainThread]: Wrote artifact WritableManifest to D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics\target\manifest.json
+[0m23:03:23.539407 [debug] [MainThread]: Wrote artifact SemanticManifest to D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics\target\semantic_manifest.json
+[0m23:03:23.539407 [debug] [MainThread]: Wrote artifact RunExecutionResult to D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics\target\run_results.json
+[0m23:03:23.539407 [info ] [MainThread]: 
+[0m23:03:23.539407 [info ] [MainThread]: [31mCompleted with 2 errors, 0 partial successes, and 0 warnings:[0m
+[0m23:03:23.554503 [info ] [MainThread]: 
+[0m23:03:23.555077 [error] [MainThread]: [31mFailure in model stg_ma_pdf_detail (models\staging\mahkamah_agung\stg_ma_pdf_detail.sql)[0m
+[0m23:03:23.556095 [error] [MainThread]:   Database Error in model stg_ma_pdf_detail (models\staging\mahkamah_agung\stg_ma_pdf_detail.sql)
+  Not found: Dataset jcdeah-007:finalproject_rakhajidhan_mahkamahagung was not found in location asia-southeast2
+  compiled code at target\run\analytics\models\staging\mahkamah_agung\stg_ma_pdf_detail.sql
+[0m23:03:23.557086 [info ] [MainThread]: 
+[0m23:03:23.557086 [info ] [MainThread]:   compiled code at target\compiled\analytics\models\staging\mahkamah_agung\stg_ma_pdf_detail.sql
+[0m23:03:23.558087 [info ] [MainThread]: 
+[0m23:03:23.559092 [error] [MainThread]: [31mFailure in model stg_ma_putusan_list (models\staging\mahkamah_agung\stg_ma_putusan_list.sql)[0m
+[0m23:03:23.560097 [error] [MainThread]:   Database Error in model stg_ma_putusan_list (models\staging\mahkamah_agung\stg_ma_putusan_list.sql)
+  Not found: Dataset jcdeah-007:finalproject_rakhajidhan_mahkamahagung was not found in location asia-southeast2
+  compiled code at target\run\analytics\models\staging\mahkamah_agung\stg_ma_putusan_list.sql
+[0m23:03:23.561093 [info ] [MainThread]: 
+[0m23:03:23.562083 [info ] [MainThread]:   compiled code at target\compiled\analytics\models\staging\mahkamah_agung\stg_ma_putusan_list.sql
+[0m23:03:23.563082 [info ] [MainThread]: 
+[0m23:03:23.564082 [info ] [MainThread]: Done. PASS=9 WARN=0 ERROR=2 SKIP=1 NO-OP=0 TOTAL=12
+[0m23:03:23.566062 [debug] [MainThread]: Command `dbt run` failed at 23:03:23.566062 after 20.95 seconds
+[0m23:03:23.566062 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205A3F2EA90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002059E81A0D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000205A4440210>]}
+[0m23:03:23.568016 [debug] [MainThread]: Flushing usage events
+[0m23:03:25.150911 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m23:12:20.147987 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B8FA196990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B8FA196B90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B8FA194B50>]}
+
+
+============================== 23:12:20.167489 | 0d41b211-241a-463f-8b55-195bdc7eee2b ==============================
+[0m23:12:20.167489 [info ] [MainThread]: Running with dbt=1.11.7
+[0m23:12:20.171953 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'D:\\Purwadhika\\Tugas\\jcdeah-007-final-project\\dbt_analytics', 'invocation_command': 'dbt debug', 'use_colors': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'log_path': 'D:\\Purwadhika\\Tugas\\jcdeah-007-final-project\\dbt_analytics\\logs'}
+[0m23:12:20.295982 [info ] [MainThread]: dbt version: 1.11.7
+[0m23:12:20.300009 [info ] [MainThread]: python version: 3.11.6
+[0m23:12:20.302273 [info ] [MainThread]: python path: C:\Users\Anindya\AppData\Local\Programs\Python\Python311\python.exe
+[0m23:12:20.304702 [info ] [MainThread]: os info: Windows-10-10.0.26200-SP0
+[0m23:12:35.645768 [info ] [MainThread]: Using profiles dir at D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics
+[0m23:12:35.645768 [info ] [MainThread]: Using profiles.yml file at D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics\profiles.yml
+[0m23:12:35.645768 [info ] [MainThread]: Using dbt_project.yml file at D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics\dbt_project.yml
+[0m23:12:35.645768 [info ] [MainThread]: adapter type: bigquery
+[0m23:12:35.645768 [info ] [MainThread]: adapter version: 1.11.1
+[0m23:12:35.846844 [info ] [MainThread]: Configuration:
+[0m23:12:35.846844 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m23:12:35.846844 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m23:12:35.846844 [info ] [MainThread]: Required dependencies:
+[0m23:12:35.846844 [debug] [MainThread]: Executing "git --help"
+[0m23:12:35.938869 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Set `HEAD` or the index to a known state\n   switch     Switch branches\n   tag        Create, list, delete or verify tags\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m23:12:35.938869 [debug] [MainThread]: STDERR: "b''"
+[0m23:12:35.938869 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m23:12:35.938869 [info ] [MainThread]: Connection:
+[0m23:12:35.938869 [info ] [MainThread]:   method: service-account
+[0m23:12:35.938869 [info ] [MainThread]:   database: jcdeah-007
+[0m23:12:35.938869 [info ] [MainThread]:   execution_project: jcdeah-007
+[0m23:12:35.950147 [info ] [MainThread]:   schema: finalproject_rakhajidhan_datamart
+[0m23:12:35.951162 [info ] [MainThread]:   location: asia-southeast2
+[0m23:12:35.952164 [info ] [MainThread]:   priority: None
+[0m23:12:35.952599 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m23:12:35.953674 [info ] [MainThread]:   impersonate_service_account: None
+[0m23:12:35.955609 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m23:12:35.956610 [info ] [MainThread]:   job_retries: 1
+[0m23:12:35.956610 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m23:12:35.957620 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m23:12:35.958609 [info ] [MainThread]:   timeout_seconds: 300
+[0m23:12:35.960608 [info ] [MainThread]:   client_id: None
+[0m23:12:35.961625 [info ] [MainThread]:   token_uri: None
+[0m23:12:35.962700 [info ] [MainThread]:   compute_region: None
+[0m23:12:35.963709 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m23:12:35.964434 [info ] [MainThread]:   gcs_bucket: None
+[0m23:12:35.967791 [info ] [MainThread]:   dataproc_batch: None
+[0m23:12:35.969791 [info ] [MainThread]: Registered adapter: bigquery=1.11.1
+[0m23:12:36.963864 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m23:12:36.963864 [debug] [MainThread]: On debug: select 1 as id
+[0m23:12:36.963864 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m23:12:39.055286 [debug] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:c69c271b-f9ec-44a9-93ee-576d1bc59813&page=queryresults
+[0m23:12:39.166391 [debug] [MainThread]: SQL status: OK in 0.110 seconds
+[0m23:12:39.735281 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m23:12:39.737260 [info ] [MainThread]: [32mAll checks passed![0m
+[0m23:12:39.740259 [debug] [MainThread]: Command `dbt debug` succeeded at 23:12:39.740259 after 19.99 seconds
+[0m23:12:39.743257 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m23:12:39.744257 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B8F368FB90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B8F6A9F650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B8F344B910>]}
+[0m23:12:39.746257 [debug] [MainThread]: Flushing usage events
+[0m23:12:42.984202 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m23:12:59.488858 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5E2764A50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5E27B0ED0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5E2759ED0>]}
+
+
+============================== 23:12:59.493627 | b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23 ==============================
+[0m23:12:59.493627 [info ] [MainThread]: Running with dbt=1.11.7
+[0m23:12:59.493627 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'empty': 'False', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'D:\\Purwadhika\\Tugas\\jcdeah-007-final-project\\dbt_analytics', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'use_colors': 'True', 'indirect_selection': 'eager', 'invocation_command': 'dbt run', 'use_experimental_parser': 'False', 'log_path': 'D:\\Purwadhika\\Tugas\\jcdeah-007-final-project\\dbt_analytics\\logs'}
+[0m23:13:04.148916 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5E27E36D0>]}
+[0m23:13:04.244795 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5DF08A590>]}
+[0m23:13:04.244795 [info ] [MainThread]: Registered adapter: bigquery=1.11.1
+[0m23:13:05.032676 [debug] [MainThread]: checksum: b80718358155fc17c3559352095564dd56ada1cc1a1c0ef2e62c857e71583775, vars: {}, profile: , target: , version: 1.11.7
+[0m23:13:06.224530 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m23:13:06.227254 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m23:13:06.229263 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m23:13:06.655042 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5F25AA710>]}
+[0m23:13:07.398760 [debug] [MainThread]: Wrote artifact WritableManifest to D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics\target\manifest.json
+[0m23:13:07.403428 [debug] [MainThread]: Wrote artifact SemanticManifest to D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics\target\semantic_manifest.json
+[0m23:13:07.515572 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5E2104550>]}
+[0m23:13:07.517583 [info ] [MainThread]: Found 12 models, 45 data tests, 8 sources, 538 macros
+[0m23:13:07.517583 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5F4FB3C90>]}
+[0m23:13:07.529086 [info ] [MainThread]: 
+[0m23:13:07.531113 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m23:13:07.533130 [info ] [MainThread]: 
+[0m23:13:07.536130 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m23:13:07.552458 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_jcdeah-007'
+[0m23:13:07.554823 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m23:13:09.548939 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_jcdeah-007_finalproject_rakhajidhan_datamart'
+[0m23:13:09.548939 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m23:13:10.369156 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5F4FA5710>]}
+[0m23:13:10.372685 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m23:13:10.419484 [debug] [Thread-1 (]: Began running node model.analytics.stg_adakami_stats
+[0m23:13:10.419484 [debug] [Thread-2 (]: Began running node model.analytics.stg_ma_pdf_detail
+[0m23:13:10.419484 [debug] [Thread-3 (]: Began running node model.analytics.stg_ma_putusan_list
+[0m23:13:10.419484 [debug] [Thread-4 (]: Began running node model.analytics.stg_p1_customers
+[0m23:13:10.419484 [info ] [Thread-1 (]: 1 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_adakami_stats  [RUN]
+[0m23:13:10.419484 [info ] [Thread-2 (]: 2 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_ma_pdf_detail  [RUN]
+[0m23:13:10.419484 [info ] [Thread-3 (]: 3 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_ma_putusan_list  [RUN]
+[0m23:13:10.419484 [info ] [Thread-4 (]: 4 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_p1_customers  [RUN]
+[0m23:13:10.419484 [debug] [Thread-1 (]: Acquiring new bigquery connection 'model.analytics.stg_adakami_stats'
+[0m23:13:10.419484 [debug] [Thread-2 (]: Acquiring new bigquery connection 'model.analytics.stg_ma_pdf_detail'
+[0m23:13:10.419484 [debug] [Thread-3 (]: Acquiring new bigquery connection 'model.analytics.stg_ma_putusan_list'
+[0m23:13:10.419484 [debug] [Thread-4 (]: Acquiring new bigquery connection 'model.analytics.stg_p1_customers'
+[0m23:13:10.435177 [debug] [Thread-1 (]: Began compiling node model.analytics.stg_adakami_stats
+[0m23:13:10.435750 [debug] [Thread-2 (]: Began compiling node model.analytics.stg_ma_pdf_detail
+[0m23:13:10.436732 [debug] [Thread-3 (]: Began compiling node model.analytics.stg_ma_putusan_list
+[0m23:13:10.437602 [debug] [Thread-4 (]: Began compiling node model.analytics.stg_p1_customers
+[0m23:13:10.447313 [debug] [Thread-1 (]: Writing injected SQL for node "model.analytics.stg_adakami_stats"
+[0m23:13:10.453361 [debug] [Thread-2 (]: Writing injected SQL for node "model.analytics.stg_ma_pdf_detail"
+[0m23:13:10.454363 [debug] [Thread-3 (]: Writing injected SQL for node "model.analytics.stg_ma_putusan_list"
+[0m23:13:10.454363 [debug] [Thread-4 (]: Writing injected SQL for node "model.analytics.stg_p1_customers"
+[0m23:13:10.454363 [debug] [Thread-1 (]: Began executing node model.analytics.stg_adakami_stats
+[0m23:13:10.462880 [debug] [Thread-2 (]: Began executing node model.analytics.stg_ma_pdf_detail
+[0m23:13:10.497911 [debug] [Thread-1 (]: Writing runtime sql for node "model.analytics.stg_adakami_stats"
+[0m23:13:10.497911 [debug] [Thread-3 (]: Began executing node model.analytics.stg_ma_putusan_list
+[0m23:13:10.497911 [debug] [Thread-4 (]: Began executing node model.analytics.stg_p1_customers
+[0m23:13:10.497911 [debug] [Thread-2 (]: Writing runtime sql for node "model.analytics.stg_ma_pdf_detail"
+[0m23:13:10.497911 [debug] [Thread-3 (]: Writing runtime sql for node "model.analytics.stg_ma_putusan_list"
+[0m23:13:10.497911 [debug] [Thread-1 (]: On model.analytics.stg_adakami_stats: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_adakami_stats"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_adakami_stats`
+  OPTIONS()
+  as 
+
+select
+    *,
+    current_timestamp() as loaded_at
+from `jcdeah-007.finalproject_rakhajidhan_adakami.prep_adakami_statistics`;
+
+
+[0m23:13:10.497911 [debug] [Thread-4 (]: Writing runtime sql for node "model.analytics.stg_p1_customers"
+[0m23:13:10.512375 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m23:13:10.513463 [debug] [Thread-2 (]: On model.analytics.stg_ma_pdf_detail: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_ma_pdf_detail"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_ma_pdf_detail`
+  OPTIONS()
+  as 
+
+select
+    nomor,
+    gcs_uri,
+    pdf_pages,
+    pdf_pihak,
+    pdf_isi_ringkas,
+    pdf_dasar_hukum,
+    pdf_amar_putusan,
+    run_date
+from `jcdeah-007.finalproject_rakhajidhan_mahkamahagung.putusan_pdf_detail`
+where nomor is not null;
+
+
+[0m23:13:10.514290 [debug] [Thread-3 (]: On model.analytics.stg_ma_putusan_list: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_ma_putusan_list"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_ma_putusan_list`
+  OPTIONS()
+  as 
+
+select
+    nomor,
+    judul,
+    url_detail,
+    tahun,
+    bulan,
+    tingkat_proses,
+    klasifikasi,
+    kata_kunci,
+    tahun_putusan,
+    tanggal_register,
+    lembaga_peradilan,
+    jenis_lembaga_peradilan,
+    hakim_ketua,
+    hakim_anggota,
+    panitera,
+    amar,
+    catatan_amar,
+    tanggal_musyawarah,
+    tanggal_dibacakan,
+    kaidah,
+    pdf_url,
+    gcs_uri,
+    kategori,
+    scraped_at,
+    run_date
+from `jcdeah-007.finalproject_rakhajidhan_mahkamahagung.putusan_list`
+where nomor is not null;
+
+
+[0m23:13:10.557883 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m23:13:10.558751 [debug] [Thread-4 (]: On model.analytics.stg_p1_customers: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_p1_customers"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p1_customers`
+  OPTIONS()
+  as 
+
+select
+    customer_id,
+    name,
+    email,
+    city,
+    created_at,
+    updated_at
+from `jcdeah-007.finalproject_rakhajidhan_ecommerce_retails.customers`
+where customer_id is not null;
+
+
+[0m23:13:10.561961 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m23:13:10.610038 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m23:13:12.793300 [debug] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:da554032-02ee-4571-8e32-d55f76751396&page=queryresults
+[0m23:13:12.979516 [debug] [Thread-1 (]: SQL status: OK in 0.185 seconds
+[0m23:13:13.026437 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:2ff8ce0a-0e44-4f77-800f-ff58b148a626&page=queryresults
+[0m23:13:13.084279 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:2e0f80f4-e933-458e-9a6b-20376c9f2e83&page=queryresults
+[0m23:13:13.091523 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:2b0ffd67-e17a-48ba-9dc9-4f21d0496ecc&page=queryresults
+[0m23:13:13.199963 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5E210E210>]}
+[0m23:13:13.199963 [info ] [Thread-1 (]: 1 of 12 OK created sql view model finalproject_rakhajidhan_datamart.stg_adakami_stats  [[32mCREATE VIEW (0 processed)[0m in 2.78s]
+[0m23:13:13.199963 [debug] [Thread-1 (]: Finished running node model.analytics.stg_adakami_stats
+[0m23:13:13.210672 [debug] [Thread-1 (]: Began running node model.analytics.stg_p1_products
+[0m23:13:13.211376 [info ] [Thread-1 (]: 5 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_p1_products . [RUN]
+[0m23:13:13.211376 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.analytics.stg_adakami_stats, now model.analytics.stg_p1_products)
+[0m23:13:13.211376 [debug] [Thread-1 (]: Began compiling node model.analytics.stg_p1_products
+[0m23:13:13.211376 [debug] [Thread-1 (]: Writing injected SQL for node "model.analytics.stg_p1_products"
+[0m23:13:13.211376 [debug] [Thread-1 (]: Began executing node model.analytics.stg_p1_products
+[0m23:13:13.226757 [debug] [Thread-1 (]: Writing runtime sql for node "model.analytics.stg_p1_products"
+[0m23:13:13.228457 [debug] [Thread-1 (]: On model.analytics.stg_p1_products: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_p1_products"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p1_products`
+  OPTIONS()
+  as 
+
+select
+    product_id,
+    product_name,
+    category,
+    price,
+    created_at,
+    updated_at
+from `jcdeah-007.finalproject_rakhajidhan_ecommerce_retails.products`
+where product_id is not null;
+
+
+[0m23:13:13.229469 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m23:13:13.306259 [debug] [Thread-2 (]: SQL status: OK in 0.271 seconds
+[0m23:13:13.314674 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5E1F3A350>]}
+[0m23:13:13.316605 [info ] [Thread-2 (]: 2 of 12 OK created sql view model finalproject_rakhajidhan_datamart.stg_ma_pdf_detail  [[32mCREATE VIEW (0 processed)[0m in 2.90s]
+[0m23:13:13.318641 [debug] [Thread-2 (]: Finished running node model.analytics.stg_ma_pdf_detail
+[0m23:13:13.319609 [debug] [Thread-2 (]: Began running node model.analytics.stg_p1_purchases
+[0m23:13:13.320592 [info ] [Thread-2 (]: 6 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_p1_purchases  [RUN]
+[0m23:13:13.322608 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.analytics.stg_ma_pdf_detail, now model.analytics.stg_p1_purchases)
+[0m23:13:13.323601 [debug] [Thread-2 (]: Began compiling node model.analytics.stg_p1_purchases
+[0m23:13:13.329589 [debug] [Thread-2 (]: Writing injected SQL for node "model.analytics.stg_p1_purchases"
+[0m23:13:13.331093 [debug] [Thread-2 (]: Began executing node model.analytics.stg_p1_purchases
+[0m23:13:13.336099 [debug] [Thread-2 (]: Writing runtime sql for node "model.analytics.stg_p1_purchases"
+[0m23:13:13.337303 [debug] [Thread-2 (]: On model.analytics.stg_p1_purchases: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_p1_purchases"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p1_purchases`
+  OPTIONS()
+  as 
+
+select
+    purchase_id,
+    customer_id,
+    product_id,
+    quantity,
+    created_at,
+    updated_at
+from `jcdeah-007.finalproject_rakhajidhan_ecommerce_retails.purchase`
+where purchase_id is not null;
+
+
+[0m23:13:13.338281 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m23:13:13.409492 [debug] [Thread-4 (]: SQL status: OK in 0.310 seconds
+[0m23:13:13.410493 [debug] [Thread-3 (]: SQL status: OK in 0.324 seconds
+[0m23:13:13.420218 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5E1EB28D0>]}
+[0m23:13:13.426261 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5F6C33890>]}
+[0m23:13:13.428331 [info ] [Thread-4 (]: 4 of 12 OK created sql view model finalproject_rakhajidhan_datamart.stg_p1_customers  [[32mCREATE VIEW (0 processed)[0m in 3.00s]
+[0m23:13:13.428810 [info ] [Thread-3 (]: 3 of 12 OK created sql view model finalproject_rakhajidhan_datamart.stg_ma_putusan_list  [[32mCREATE VIEW (0 processed)[0m in 3.01s]
+[0m23:13:13.428810 [debug] [Thread-4 (]: Finished running node model.analytics.stg_p1_customers
+[0m23:13:13.428810 [debug] [Thread-3 (]: Finished running node model.analytics.stg_ma_putusan_list
+[0m23:13:13.428810 [debug] [Thread-4 (]: Began running node model.analytics.stg_p2_taxi_trips
+[0m23:13:13.428810 [debug] [Thread-3 (]: Began running node model.analytics.stg_p3_transactions
+[0m23:13:13.428810 [info ] [Thread-4 (]: 7 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_p2_taxi_trips  [RUN]
+[0m23:13:13.428810 [info ] [Thread-3 (]: 8 of 12 START sql view model finalproject_rakhajidhan_datamart.stg_p3_transactions  [RUN]
+[0m23:13:13.428810 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly model.analytics.stg_p1_customers, now model.analytics.stg_p2_taxi_trips)
+[0m23:13:13.440305 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.analytics.stg_ma_putusan_list, now model.analytics.stg_p3_transactions)
+[0m23:13:13.441326 [debug] [Thread-4 (]: Began compiling node model.analytics.stg_p2_taxi_trips
+[0m23:13:13.442321 [debug] [Thread-3 (]: Began compiling node model.analytics.stg_p3_transactions
+[0m23:13:13.451040 [debug] [Thread-4 (]: Writing injected SQL for node "model.analytics.stg_p2_taxi_trips"
+[0m23:13:13.457959 [debug] [Thread-3 (]: Writing injected SQL for node "model.analytics.stg_p3_transactions"
+[0m23:13:13.459957 [debug] [Thread-4 (]: Began executing node model.analytics.stg_p2_taxi_trips
+[0m23:13:13.468132 [debug] [Thread-4 (]: Writing runtime sql for node "model.analytics.stg_p2_taxi_trips"
+[0m23:13:13.469153 [debug] [Thread-3 (]: Began executing node model.analytics.stg_p3_transactions
+[0m23:13:13.471141 [debug] [Thread-3 (]: Writing runtime sql for node "model.analytics.stg_p3_transactions"
+[0m23:13:13.471141 [debug] [Thread-4 (]: On model.analytics.stg_p2_taxi_trips: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_p2_taxi_trips"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p2_taxi_trips`
+  OPTIONS()
+  as 
+
+select
+    VendorID,
+    lpep_pickup_datetime,
+    lpep_dropoff_datetime,
+    store_and_fwd_flag,
+    RatecodeID,
+    PULocationID,
+    DOLocationID,
+    passenger_count,
+    trip_distance,
+    fare_amount,
+    extra,
+    mta_tax,
+    tip_amount,
+    tolls_amount,
+    ehail_fee,
+    improvement_surcharge,
+    total_amount,
+    payment_type,
+    trip_type,
+    congestion_surcharge,
+    run_date
+from `jcdeah-007.finalproject_rakhajidhan_ny_taxi_preparation.green_tripdata`
+where run_date is not null;
+
+
+[0m23:13:13.479448 [debug] [Thread-3 (]: On model.analytics.stg_p3_transactions: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.stg_p3_transactions"} */
+
+
+  create or replace view `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p3_transactions`
+  OPTIONS()
+  as 
+
+select
+    transaction_id,
+    event_type,
+    customer_id,
+    customer_name,
+    customer_city,
+    product_id,
+    product_name,
+    product_category,
+    unit_price,
+    quantity,
+    total_amount,
+    payment_method,
+    status,
+    published_at,
+    ingested_at,
+    run_date
+from `jcdeah-007.finalproject_rakhajidhan_pubsub_retail.retail_transactions_streaming`
+where transaction_id is not null;
+
+
+[0m23:13:13.479448 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m23:13:13.479448 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m23:13:15.577431 [debug] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:2cc501c5-8594-4b97-939a-6171208eaf3c&page=queryresults
+[0m23:13:15.823183 [debug] [Thread-1 (]: SQL status: OK in 0.239 seconds
+[0m23:13:15.825191 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:ac931af9-fed5-4085-abc1-a0dc8da0c89f&page=queryresults
+[0m23:13:15.830863 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5F6CC8B90>]}
+[0m23:13:15.830863 [info ] [Thread-1 (]: 5 of 12 OK created sql view model finalproject_rakhajidhan_datamart.stg_p1_products  [[32mCREATE VIEW (0 processed)[0m in 2.62s]
+[0m23:13:15.830863 [debug] [Thread-1 (]: Finished running node model.analytics.stg_p1_products
+[0m23:13:15.830863 [debug] [Thread-1 (]: Began running node model.analytics.mart_ma_putusan
+[0m23:13:15.830863 [info ] [Thread-1 (]: 9 of 12 START sql table model finalproject_rakhajidhan_datamart.mart_ma_putusan  [RUN]
+[0m23:13:15.830863 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.analytics.stg_p1_products, now model.analytics.mart_ma_putusan)
+[0m23:13:15.830863 [debug] [Thread-1 (]: Began compiling node model.analytics.mart_ma_putusan
+[0m23:13:15.848912 [debug] [Thread-1 (]: Writing injected SQL for node "model.analytics.mart_ma_putusan"
+[0m23:13:15.850899 [debug] [Thread-1 (]: Began executing node model.analytics.mart_ma_putusan
+[0m23:13:15.903112 [debug] [Thread-1 (]: Writing runtime sql for node "model.analytics.mart_ma_putusan"
+[0m23:13:15.903112 [debug] [Thread-1 (]: On model.analytics.mart_ma_putusan: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.mart_ma_putusan"} */
+
+  
+    
+
+    create or replace table `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`mart_ma_putusan`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      
+
+select
+    p.nomor,
+    p.judul,
+    p.kategori,
+    p.tahun,
+    p.bulan,
+    p.tingkat_proses,
+    p.lembaga_peradilan,
+    p.amar,
+    p.gcs_uri,
+    pdf.pdf_pages,
+    pdf.pdf_pihak,
+    pdf.pdf_isi_ringkas,
+    pdf.pdf_amar_putusan,
+    p.scraped_at,
+    p.run_date,
+    current_timestamp() as dbt_loaded_at
+from `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_ma_putusan_list` p
+left join `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_ma_pdf_detail` pdf
+    on p.nomor = pdf.nomor
+    and p.run_date = pdf.run_date
+    );
+  
+[0m23:13:15.903112 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m23:13:16.010562 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:0cfcd67b-2abf-4efb-a543-66a540acaeac&page=queryresults
+[0m23:13:16.060316 [debug] [Thread-2 (]: SQL status: OK in 0.228 seconds
+[0m23:13:16.061648 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5F560EC50>]}
+[0m23:13:16.061648 [info ] [Thread-2 (]: 6 of 12 OK created sql view model finalproject_rakhajidhan_datamart.stg_p1_purchases  [[32mCREATE VIEW (0 processed)[0m in 2.74s]
+[0m23:13:16.061648 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:5662546b-14a0-4c08-9b9d-087cb453572d&page=queryresults
+[0m23:13:16.061648 [debug] [Thread-2 (]: Finished running node model.analytics.stg_p1_purchases
+[0m23:13:16.061648 [debug] [Thread-2 (]: Began running node model.analytics.mart_p1_sales
+[0m23:13:16.078716 [info ] [Thread-2 (]: 10 of 12 START sql table model finalproject_rakhajidhan_datamart.mart_p1_sales . [RUN]
+[0m23:13:16.080094 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.analytics.stg_p1_purchases, now model.analytics.mart_p1_sales)
+[0m23:13:16.080094 [debug] [Thread-2 (]: Began compiling node model.analytics.mart_p1_sales
+[0m23:13:16.087510 [debug] [Thread-2 (]: Writing injected SQL for node "model.analytics.mart_p1_sales"
+[0m23:13:16.089593 [debug] [Thread-2 (]: Began executing node model.analytics.mart_p1_sales
+[0m23:13:16.094350 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m23:13:16.227323 [debug] [Thread-3 (]: SQL status: OK in 0.210 seconds
+[0m23:13:16.227323 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5F4A28510>]}
+[0m23:13:16.227323 [info ] [Thread-3 (]: 8 of 12 OK created sql view model finalproject_rakhajidhan_datamart.stg_p3_transactions  [[32mCREATE VIEW (0 processed)[0m in 2.79s]
+[0m23:13:16.227323 [debug] [Thread-3 (]: Finished running node model.analytics.stg_p3_transactions
+[0m23:13:16.227323 [debug] [Thread-3 (]: Began running node model.analytics.mart_p3_transaction_daily
+[0m23:13:16.227323 [info ] [Thread-3 (]: 11 of 12 START sql table model finalproject_rakhajidhan_datamart.mart_p3_transaction_daily  [RUN]
+[0m23:13:16.227323 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.analytics.stg_p3_transactions, now model.analytics.mart_p3_transaction_daily)
+[0m23:13:16.227323 [debug] [Thread-3 (]: Began compiling node model.analytics.mart_p3_transaction_daily
+[0m23:13:16.248052 [debug] [Thread-3 (]: Writing injected SQL for node "model.analytics.mart_p3_transaction_daily"
+[0m23:13:16.250962 [debug] [Thread-3 (]: Began executing node model.analytics.mart_p3_transaction_daily
+[0m23:13:16.255070 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m23:13:16.385874 [debug] [Thread-4 (]: SQL status: OK in 0.315 seconds
+[0m23:13:16.397743 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5F5390B90>]}
+[0m23:13:16.397743 [info ] [Thread-4 (]: 7 of 12 OK created sql view model finalproject_rakhajidhan_datamart.stg_p2_taxi_trips  [[32mCREATE VIEW (0 processed)[0m in 2.97s]
+[0m23:13:16.401139 [debug] [Thread-4 (]: Finished running node model.analytics.stg_p2_taxi_trips
+[0m23:13:16.401139 [debug] [Thread-4 (]: Began running node model.analytics.mart_p2_taxi_daily
+[0m23:13:16.404061 [info ] [Thread-4 (]: 12 of 12 START sql table model finalproject_rakhajidhan_datamart.mart_p2_taxi_daily  [RUN]
+[0m23:13:16.406067 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly model.analytics.stg_p2_taxi_trips, now model.analytics.mart_p2_taxi_daily)
+[0m23:13:16.406067 [debug] [Thread-4 (]: Began compiling node model.analytics.mart_p2_taxi_daily
+[0m23:13:16.416078 [debug] [Thread-4 (]: Writing injected SQL for node "model.analytics.mart_p2_taxi_daily"
+[0m23:13:16.418078 [debug] [Thread-4 (]: Began executing node model.analytics.mart_p2_taxi_daily
+[0m23:13:16.424077 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m23:13:18.226975 [debug] [Thread-2 (]: Writing runtime sql for node "model.analytics.mart_p1_sales"
+[0m23:13:18.226975 [debug] [Thread-2 (]: On model.analytics.mart_p1_sales: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.mart_p1_sales"} */
+
+  
+    
+
+    create or replace table `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`mart_p1_sales`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      
+
+select
+    p.purchase_id,
+    c.customer_id,
+    c.name         as customer_name,
+    c.city         as customer_city,
+    c.email        as customer_email,
+    pr.product_id,
+    pr.product_name,
+    pr.category    as product_category,
+    pr.price       as unit_price,
+    p.quantity,
+    cast(pr.price as float64) * cast(p.quantity as float64) as total_amount,
+    p.created_at   as purchase_date,
+    current_timestamp() as dbt_loaded_at
+from `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p1_purchases` p
+inner join `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p1_customers` c
+    on p.customer_id = c.customer_id
+inner join `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p1_products` pr
+    on p.product_id = pr.product_id
+    );
+  
+[0m23:13:18.269752 [debug] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:fe57edfb-be9e-4144-b996-610a46972a90&page=queryresults
+[0m23:13:18.481974 [debug] [Thread-3 (]: Writing runtime sql for node "model.analytics.mart_p3_transaction_daily"
+[0m23:13:18.481974 [debug] [Thread-3 (]: On model.analytics.mart_p3_transaction_daily: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.mart_p3_transaction_daily"} */
+
+  
+    
+
+    create or replace table `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`mart_p3_transaction_daily`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      
+
+select
+    run_date,
+    customer_id,
+    customer_name,
+    customer_city,
+    product_category,
+    payment_method,
+    status,
+    count(*)            as num_transactions,
+    avg(quantity)       as avg_quantity,
+    avg(total_amount)   as avg_amount,
+    sum(total_amount)   as total_revenue,
+    current_timestamp() as dbt_loaded_at
+from `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p3_transactions`
+where transaction_id is not null
+group by
+    run_date,
+    customer_id,
+    customer_name,
+    customer_city,
+    product_category,
+    payment_method,
+    status
+    );
+  
+[0m23:13:18.513855 [debug] [Thread-4 (]: Writing runtime sql for node "model.analytics.mart_p2_taxi_daily"
+[0m23:13:18.513855 [debug] [Thread-4 (]: On model.analytics.mart_p2_taxi_daily: /* {"app": "dbt", "dbt_version": "1.11.7", "profile_name": "analytics", "target_name": "dev", "node_id": "model.analytics.mart_p2_taxi_daily"} */
+
+  
+    
+
+    create or replace table `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`mart_p2_taxi_daily`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      
+
+select
+    cast(lpep_pickup_datetime as date) as trip_date,
+    VendorID,
+    count(*)                as num_trips,
+    avg(passenger_count)    as avg_passengers,
+    avg(trip_distance)      as avg_distance,
+    avg(fare_amount)        as avg_fare,
+    avg(total_amount)       as avg_total,
+    sum(total_amount)       as total_revenue,
+    current_timestamp()     as dbt_loaded_at
+from `jcdeah-007`.`finalproject_rakhajidhan_datamart`.`stg_p2_taxi_trips`
+where lpep_pickup_datetime is not null
+group by
+    cast(lpep_pickup_datetime as date),
+    VendorID
+    );
+  
+[0m23:13:18.983396 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:042b9552-1df8-4927-8d8f-9c7bf2909066&page=queryresults
+[0m23:13:19.047414 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:0ee04409-0fe3-4e0e-8191-10daf750439c&page=queryresults
+[0m23:13:19.173795 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=jcdeah-007&j=bq:asia-southeast2:b3468493-50d5-4eaa-a2ee-810fcfb596e8&page=queryresults
+[0m23:13:19.567381 [debug] [Thread-1 (]: SQL status: OK in 1.295 seconds
+[0m23:13:19.657244 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5F55A6050>]}
+[0m23:13:19.657244 [info ] [Thread-1 (]: 9 of 12 OK created sql table model finalproject_rakhajidhan_datamart.mart_ma_putusan  [[32mCREATE TABLE (19.0 rows, 2.6 KiB processed)[0m in 3.83s]
+[0m23:13:19.659251 [debug] [Thread-1 (]: Finished running node model.analytics.mart_ma_putusan
+[0m23:13:20.235102 [debug] [Thread-2 (]: SQL status: OK in 1.246 seconds
+[0m23:13:20.325967 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5F6DD6410>]}
+[0m23:13:20.327608 [info ] [Thread-2 (]: 10 of 12 OK created sql table model finalproject_rakhajidhan_datamart.mart_p1_sales  [[32mCREATE TABLE (219.0 rows, 4.4 KiB processed)[0m in 4.25s]
+[0m23:13:20.327608 [debug] [Thread-3 (]: SQL status: OK in 1.266 seconds
+[0m23:13:20.327608 [debug] [Thread-2 (]: Finished running node model.analytics.mart_p1_sales
+[0m23:13:20.411795 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5F6E1BF90>]}
+[0m23:13:20.411795 [info ] [Thread-3 (]: 11 of 12 OK created sql table model finalproject_rakhajidhan_datamart.mart_p3_transaction_daily  [[32mCREATE TABLE (19.0 rows, 2.1 KiB processed)[0m in 4.18s]
+[0m23:13:20.411795 [debug] [Thread-3 (]: Finished running node model.analytics.mart_p3_transaction_daily
+[0m23:13:20.436563 [debug] [Thread-4 (]: SQL status: OK in 1.265 seconds
+[0m23:13:20.527734 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b9e13f2e-f8ec-415d-bc05-ce6b9dd20d23', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5F6DD0AD0>]}
+[0m23:13:20.527734 [info ] [Thread-4 (]: 12 of 12 OK created sql table model finalproject_rakhajidhan_datamart.mart_p2_taxi_daily  [[32mCREATE TABLE (1.9k rows, 90.1 MiB processed)[0m in 4.12s]
+[0m23:13:20.527734 [debug] [Thread-4 (]: Finished running node model.analytics.mart_p2_taxi_daily
+[0m23:13:20.527734 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m23:13:20.559413 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m23:13:20.559413 [debug] [MainThread]: Connection 'list_jcdeah-007' was properly closed.
+[0m23:13:20.559413 [debug] [MainThread]: Connection 'list_jcdeah-007_finalproject_rakhajidhan_datamart' was properly closed.
+[0m23:13:20.559413 [debug] [MainThread]: Connection 'model.analytics.mart_ma_putusan' was properly closed.
+[0m23:13:20.559413 [debug] [MainThread]: Connection 'model.analytics.mart_p1_sales' was properly closed.
+[0m23:13:20.559413 [debug] [MainThread]: Connection 'model.analytics.mart_p3_transaction_daily' was properly closed.
+[0m23:13:20.559413 [debug] [MainThread]: Connection 'model.analytics.mart_p2_taxi_daily' was properly closed.
+[0m23:13:20.574562 [info ] [MainThread]: 
+[0m23:13:20.574562 [info ] [MainThread]: Finished running 4 table models, 8 view models in 0 hours 0 minutes and 13.04 seconds (13.04s).
+[0m23:13:20.577987 [debug] [MainThread]: Command end result
+[0m23:13:20.619348 [debug] [MainThread]: Wrote artifact WritableManifest to D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics\target\manifest.json
+[0m23:13:20.619348 [debug] [MainThread]: Wrote artifact SemanticManifest to D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics\target\semantic_manifest.json
+[0m23:13:20.629361 [debug] [MainThread]: Wrote artifact RunExecutionResult to D:\Purwadhika\Tugas\jcdeah-007-final-project\dbt_analytics\target\run_results.json
+[0m23:13:20.629361 [info ] [MainThread]: 
+[0m23:13:20.629361 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m23:13:20.629361 [info ] [MainThread]: 
+[0m23:13:20.629361 [info ] [MainThread]: Done. PASS=12 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=12
+[0m23:13:20.629361 [debug] [MainThread]: Command `dbt run` succeeded at 23:13:20.629361 after 21.23 seconds
+[0m23:13:20.629361 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5E24E3A50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5DB98B8D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5DBC2A0D0>]}
+[0m23:13:20.629361 [debug] [MainThread]: Flushing usage events
+[0m23:13:22.183719 [debug] [MainThread]: An error was encountered while trying to flush usage events

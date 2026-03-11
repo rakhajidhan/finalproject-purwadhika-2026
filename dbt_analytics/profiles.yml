@@ -1,0 +1,24 @@
+analytics:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: jcdeah-007
+      dataset: finalproject_rakhajidhan_datamart
+      location: asia-southeast2
+      keyfile: "D:\\Purwadhika\\Tugas\\jcdeah-007-final-project\\service-account.json"
+      timeout_seconds: 300
+      retries: 1
+      threads: 4
+
+    prod:
+      type: bigquery
+      method: service-account
+      project: jcdeah-007
+      dataset: finalproject_rakhajidhan_datamart
+      location: asia-southeast2
+      keyfile: "D:\\Purwadhika\\Tugas\\jcdeah-007-final-project\\service-account.json"
+      timeout_seconds: 300
+      retries: 1
+      threads: 4
