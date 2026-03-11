@@ -84,7 +84,7 @@ SCHEMA_PDF_DETAIL = [
 def ensure_dataset_exists(client: bigquery.Client):
     """Create BQ dataset if it doesn't exist yet."""
     dataset_ref = bigquery.Dataset(f"{PROJECT_ID}.{DATASET_ID}")
-    dataset_ref.location = "US"
+    dataset_ref.location = "asia-southeast2"
     try:
         client.get_dataset(dataset_ref)
         logger.info(f"Dataset already exists: {DATASET_ID}")

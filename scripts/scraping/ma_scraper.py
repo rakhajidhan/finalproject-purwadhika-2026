@@ -1,19 +1,21 @@
 """
 ma_scraper.py
 =============
-All-in-one pipeline for Mahkamah Agung Putusan (all categories, front page only).
+All-in-one pipeline for Mahkamah Agung Putusan (all categories, front page).
 
-Pipeline flow (all in this file):
-    1. scrape_listing_frontpage() → scrape the single front-page listing for a given year
-    2. scrape_detail()            → scrape detail fields for each putusan
-    3. download_pdf()             → download each PDF → upload to GCS
-    4. extract_pdf_text()         → extract structured text from PDF bytes
-    5. scrape_list()              → main entry point called by Airflow DAG
+Pipeline flow:
+    1. scrape_listing_frontpage()  → collect putusan detail URLs from front page
+    2. scrape_detail()             → scrape structured fields + PDF URL per putusan
+    3. process_pdf()               → download PDF → upload to GCS → extract text
+    4. scrape_list()               → Airflow entry point
 
-Target URL  : https://putusan3.mahkamahagung.go.id/direktori/index/tahunjenis/putus/tahun/YYYY.html
-              (front page only — no month/page pagination)
+Target URL : https://putusan3.mahkamahagung.go.id/direktori/index/tahunjenis/putus/tahun/YYYY.html
+             Front page only (~43 putusan). Each item links to:
+             https://putusan3.mahkamahagung.go.id/direktori/putusan/<hash>.html
+
 GCS bucket  : jcdeah007-bucket
 GCS folder  : finalproject_rakhajidhan/mahkamah_agung/pdf/
+GCS region  : asia-southeast2 (Jakarta)
 """
 
 import os
@@ -58,7 +60,7 @@ HEADERS = {
     )
 }
 
-# No month/page batching — scrape front page per year only
+# No month/page batching — front page is year-level only
 
 
 # ─────────────────────────────────────────────────────────────
@@ -71,18 +73,23 @@ _session.verify = False
 _session.headers.update(HEADERS)
 
 
-def safe_get(url: str, params: dict = None, retries: int = 3, delay: float = 2.0) -> requests.Response:
-    """HTTP GET with exponential retry. SSL disabled (same as curl -k)."""
+def safe_get(url: str, params: dict = None, retries: int = 1,
+             delay: float = 2.0, timeout: int = 15) -> requests.Response:
+    """
+    HTTP GET with retry. SSL disabled (verify=False).
+    Default: 15s timeout, 1 attempt — fail fast on flaky detail pages.
+    Pass timeout=60, retries=2 explicitly for PDF downloads.
+    """
     for attempt in range(1, retries + 1):
         try:
-            resp = _session.get(url, params=params, timeout=60)
+            resp = _session.get(url, params=params, timeout=timeout)
             resp.raise_for_status()
             return resp
         except requests.RequestException as e:
             logger.warning(f"[Attempt {attempt}] GET failed for {url}: {e}")
             if attempt < retries:
                 time.sleep(delay * attempt)
-    raise RuntimeError(f"Failed to fetch {url} after {retries} retries")
+    raise RuntimeError(f"Failed to fetch {url} after {retries} attempt(s)")
 
 
 def sanitize_filename(nomor: str) -> str:
@@ -101,66 +108,47 @@ def gcs_blob_exists(bucket, blob_name: str) -> bool:
 # ─────────────────────────────────────────────────────────────
 
 def get_frontpage_url(year: int) -> str:
-    """
-    Build the front-page direktori URL for a given year (no category/month/page filter).
-    Pattern: /direktori/index/tahunjenis/putus/tahun/YYYY.html
-    """
+    """Front-page URL listing the most recent putusan for a given year."""
     return f"{BASE_URL}/direktori/index/tahunjenis/putus/tahun/{year}.html"
 
 
 def scrape_listing_frontpage(year: int) -> list:
     """
-    Scrape the single front-page listing for a given year.
-    No pagination — only the front page is fetched.
-    Returns list of dicts: nomor, judul, url_detail, tahun.
+    Scrape the front page for a given year. Returns one row per putusan.
+    nomor is NOT extracted here — the listing title is often just the court
+    name. The canonical nomor is read from the detail page table instead.
     """
     url  = get_frontpage_url(year)
-    logger.info(f"  Fetching front page: {url}")
-    resp = safe_get(url)
+    logger.info(f"Fetching front page: {url}")
+    resp = safe_get(url, timeout=30, retries=3)
     soup = BeautifulSoup(resp.text, "html.parser")
 
-    # ── Debug: log a snippet of the raw HTML to reveal actual structure ──
-    raw_snippet = resp.text[:3000]
-    logger.info(f"  [DEBUG] HTML snippet (first 3000 chars):\n{raw_snippet}")
-
-    # Try multiple container selectors used by Mahkamah Agung listing pages
-    items = (
-        soup.select("div.spost.clearfix")
-        or soup.select("div.info-box")
-        or soup.select("table.table tbody tr")
-        or soup.select("ul.direktori-list li")
-        or soup.select("div.col-md-12 table tr")
-    )
-    logger.info(f"  [{year}] Front page: {len(items)} containers found")
+    items = soup.select("div.spost.clearfix") or soup.select("div.info-box")
+    logger.info(f"[{year}] Front page: {len(items)} items found")
 
     rows = []
     for item in items:
         try:
-            # Cast wide net for link — any <a> whose href points to a putusan detail
-            title_tag = (
+            link_tag = (
                 item.select_one("h2 a")
                 or item.select_one("h3 a")
                 or item.select_one("h4 a")
-                or item.select_one("a.entry-title")
-                or item.select_one("td a[href*='putusan']")
-                or item.select_one("td a[href*='direktori']")
                 or item.select_one("a[href*='putusan']")
                 or item.select_one("a[href*='direktori']")
             )
-
-            if not title_tag:
-                logger.debug(f"  [DEBUG] No title_tag found in item: {str(item)[:200]}")
+            if not link_tag:
                 continue
 
-            judul      = title_tag.get_text(strip=True)
-            detail_url = title_tag.get("href", "")
+            judul      = link_tag.get_text(strip=True)
+            detail_url = link_tag.get("href", "")
             if detail_url and not detail_url.startswith("http"):
                 detail_url = BASE_URL + detail_url
 
-            nomor = judul.split("Nomor")[-1].strip() if "Nomor" in judul else judul
+            # Only keep links pointing to individual putusan detail pages
+            if "/direktori/putusan/" not in detail_url:
+                continue
 
             rows.append({
-                "nomor":      nomor,
                 "judul":      judul,
                 "url_detail": detail_url,
                 "tahun":      year,
@@ -170,7 +158,7 @@ def scrape_listing_frontpage(year: int) -> list:
             logger.warning(f"  Listing parse error: {e}")
             continue
 
-    logger.info(f"  [{year}] Parsed {len(rows)} rows from {len(items)} containers")
+    logger.info(f"[{year}] Collected {len(rows)} putusan detail URLs")
     return rows
 
 
@@ -202,16 +190,16 @@ DETAIL_LABEL_MAP = {
 def scrape_detail(url_detail: str) -> dict:
     """
     Scrape structured fields from a putusan detail page.
-    Also extracts the PDF download URL.
-    Returns a dict of field → value.
+    15s timeout, 1 attempt — skip gracefully if the page is slow.
+    nomor is read from the detail table (canonical), not the listing title.
     """
     if not url_detail:
         return {}
 
     try:
-        resp = safe_get(url_detail)
+        resp = safe_get(url_detail, timeout=15, retries=1)
     except RuntimeError as e:
-        logger.error(f"  Detail page unreachable: {url_detail} — {e}")
+        logger.warning(f"  Detail skipped (slow/unreachable): {url_detail} — {e}")
         return {}
 
     soup = BeautifulSoup(resp.text, "html.parser")
@@ -244,18 +232,14 @@ def scrape_detail(url_detail: str) -> dict:
 # SECTION 4: DOWNLOAD PDF → UPLOAD TO GCS
 # ─────────────────────────────────────────────────────────────
 
-def download_pdf_bytes(pdf_url: str, retries: int = 3) -> bytes | None:
-    """Download PDF from URL and return raw bytes."""
-    for attempt in range(1, retries + 1):
-        try:
-            resp = _session.get(pdf_url, timeout=120, stream=True)
-            resp.raise_for_status()
-            return resp.content
-        except Exception as e:
-            logger.warning(f"  [Attempt {attempt}] PDF download failed {pdf_url}: {e}")
-            if attempt < retries:
-                time.sleep(2 * attempt)
-    return None
+def download_pdf_bytes(pdf_url: str) -> bytes | None:
+    """Download PDF — longer timeout since PDFs can be large."""
+    try:
+        resp = safe_get(pdf_url, timeout=60, retries=2)
+        return resp.content
+    except RuntimeError as e:
+        logger.warning(f"  PDF download failed: {pdf_url} — {e}")
+        return None
 
 
 def upload_pdf_to_gcs(pdf_bytes: bytes, blob_name: str, bucket) -> str:
@@ -424,56 +408,58 @@ def extract_pdf_text(pdf_bytes: bytes) -> dict:
 
 def scrape_list(year: int, month: int = None) -> pd.DataFrame:
     """
-    Main pipeline function — called by Airflow PythonOperator.
+    Main pipeline — called by Airflow PythonOperator.
 
-    Scrapes the front-page listing for the given year (single page, no pagination).
-    The `month` parameter is accepted for DAG compatibility but is ignored —
-    the front page is not filterable by month.
-
-    For each putusan on the front page:
-      1. Scrape detail page
-      2. Download PDF → upload to GCS → extract text
-    Returns a single merged DataFrame ready for BigQuery loading.
+    Scrapes the front page for the given year (~43 putusan), then for each:
+      1. Fetches the detail page (15s timeout) → structured fields + PDF URL
+      2. Downloads the PDF → uploads to GCS → extracts text
 
     Args:
         year  : Target year (e.g. 2026)
         month : Ignored — kept for DAG interface compatibility.
     """
     logger.info(f"\n{'='*50}")
-    logger.info(f" Processing front page: year={year} (all categories)")
+    logger.info(f" Scraping front page: year={year}")
     logger.info(f"{'='*50}")
 
-    # GCS client
     storage_client = storage.Client()
-    bucket = storage_client.bucket(BUCKET_NAME)
+    bucket         = storage_client.bucket(BUCKET_NAME)
     os.makedirs(LOCAL_TMP, exist_ok=True)
 
-    # ── Step 1: Scrape front-page listing ──
+    # ── Step 1: collect putusan URLs from front page ──
     try:
         listing_rows = scrape_listing_frontpage(year)
     except Exception as e:
-        logger.error(f"  Front-page listing scrape failed: {e}")
+        logger.error(f"Front-page scrape failed: {e}")
         return pd.DataFrame()
 
     if not listing_rows:
-        logger.warning("No items found on the front page.")
+        logger.warning("No putusan URLs found on front page.")
         return pd.DataFrame()
 
     all_records = []
 
     for row in listing_rows:
-        nomor = row.get("nomor", "unknown")
-        logger.info(f"  Processing: {nomor}")
+        url_detail = row.get("url_detail", "")
+        logger.info(f"  → {url_detail}")
 
-        # ── Step 2: Scrape detail page ──
+        # ── Step 2: detail page (fast-fail 15s) ──
         time.sleep(0.5)
         try:
-            detail = scrape_detail(row["url_detail"])
+            detail = scrape_detail(url_detail)
             row.update(detail)
         except Exception as e:
-            logger.warning(f"  Detail failed for {nomor}: {e}")
+            logger.warning(f"  Detail error: {e}")
 
-        # ── Step 3: PDF pipeline (download + upload + extract) ──
+        # nomor: from detail table (canonical); fallback to listing title
+        if not row.get("nomor"):
+            judul = row.get("judul", "")
+            row["nomor"] = judul.split("Nomor")[-1].strip() if "Nomor" in judul else judul
+
+        nomor = row["nomor"]
+        logger.info(f"    nomor: {nomor}")
+
+        # ── Step 3: PDF pipeline ──
         pdf_url = row.get("pdf_url")
         if pdf_url:
             time.sleep(0.5)
@@ -483,9 +469,9 @@ def scrape_list(year: int, month: int = None) -> pd.DataFrame:
             except Exception as e:
                 logger.warning(f"  PDF pipeline failed for {nomor}: {e}")
         else:
-            logger.warning(f"  No PDF URL found for: {nomor}")
+            logger.warning(f"  No PDF URL for: {nomor}")
 
-        # ── Step 4: Add metadata ──
+        # ── Step 4: metadata ──
         row["run_date"]   = datetime.utcnow().date().isoformat()
         row["kategori"]   = "All"
         row["scraped_at"] = datetime.utcnow().isoformat()
@@ -498,12 +484,10 @@ def scrape_list(year: int, month: int = None) -> pd.DataFrame:
 
     df = pd.DataFrame(all_records)
 
-    # ── Global deduplication by nomor ──
     before = len(df)
-    df = df.drop_duplicates(subset=["nomor"])
-    after = len(df)
+    df     = df.drop_duplicates(subset=["nomor"])
+    after  = len(df)
     logger.info(f"\nDeduplication: {before} → {after} records ({before - after} removed)")
-
     logger.info(f"Final DataFrame: {len(df)} rows, {len(df.columns)} columns")
     logger.info(f"Columns: {df.columns.tolist()}")
 
@@ -515,7 +499,6 @@ def scrape_list(year: int, month: int = None) -> pd.DataFrame:
 # ─────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    # Test scraping the 2026 front page
     df = scrape_list(year=2026)
     print(f"\nResult: {len(df)} records")
-    print(df[["nomor", "tingkat_proses", "amar", "gcs_uri"]].head(10))
+    print(df[["nomor", "lembaga_peradilan", "amar", "gcs_uri"]].head(10))
