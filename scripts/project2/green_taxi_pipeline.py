@@ -9,13 +9,13 @@ from google.api_core.exceptions import NotFound
 
 
 # ─── CONFIG ───────────────────────────────────────────────
-PROJECT_ID       = "jcdeah-007"
-DATASET          = "finalproject_rakhajidhan_ny_taxi_preparation"
-DATASET_GREENTAXI = "finalproject_rakhajidhan_greentaxi_preparation"
-TABLE            = "green_tripdata"
-BUCKET_NAME      = "jcdeah007-bucket"
-FOLDER           = "capstone3_rakhajidhan/raw"
-BASE_URL         = "https://d37ci6vzurychx.cloudfront.net/trip-data"
+PROJECT_ID        = "jcdeah-007"
+DATASET_MAIN      = "finalproject_rakhajidhan_greentaxi_preparation"   # main table lives here
+DATASET_STAGING   = "finalproject_rakhajidhan_greentaxi_staging"       # staging table lives here
+TABLE             = "green_tripdata"
+BUCKET_NAME       = "jcdeah007-bucket"
+FOLDER            = "capstone3_rakhajidhan/raw"
+BASE_URL          = "https://d37ci6vzurychx.cloudfront.net/trip-data"
 
 
 # ─── HELPERS ──────────────────────────────────────────────
@@ -23,7 +23,7 @@ BASE_URL         = "https://d37ci6vzurychx.cloudfront.net/trip-data"
 def ensure_dataset(bq_client: bigquery.Client, dataset_id: str) -> None:
     """Create BQ dataset if it doesn't exist yet."""
     dataset_ref = bigquery.Dataset(f"{PROJECT_ID}.{dataset_id}")
-    dataset_ref.location = "US"
+    dataset_ref.location = "asia-southeast2"
     bq_client.create_dataset(dataset_ref, exists_ok=True)
     print(f"  [BQ] Dataset ready: {dataset_id}")
 
@@ -32,7 +32,6 @@ def dataset_exists(year: int, month: int) -> bool:
     """
     Check availability using GET with stream=True instead of HEAD.
     CloudFront sometimes blocks HEAD requests, causing false 404s.
-    We only download the first few bytes to confirm the file exists.
     """
     url = f"{BASE_URL}/green_tripdata_{year}-{month:02d}.parquet"
     try:
@@ -63,11 +62,11 @@ def process_month() -> None:
     bq_client      = bigquery.Client()
 
     # ── Ensure both BQ datasets exist before any operations ──
-    ensure_dataset(bq_client, DATASET)
-    ensure_dataset(bq_client, DATASET_GREENTAXI)
+    ensure_dataset(bq_client, DATASET_MAIN)
+    ensure_dataset(bq_client, DATASET_STAGING)
 
-    table_id         = f"{PROJECT_ID}.{DATASET}.{TABLE}"
-    staging_table_id = f"{PROJECT_ID}.{DATASET_GREENTAXI}.{TABLE}_staging"
+    table_id         = f"{PROJECT_ID}.{DATASET_MAIN}.{TABLE}"
+    staging_table_id = f"{PROJECT_ID}.{DATASET_STAGING}.{TABLE}_staging"
 
     drop_bq_table(bq_client, table_id)
     first_load = True
