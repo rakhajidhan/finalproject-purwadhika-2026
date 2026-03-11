@@ -178,7 +178,7 @@ def process_month() -> None:
             """
 
         print(f"  [BQ] Inserting into main table with type casting ...")
-        query_job = bq_client.query(sql)
+        query_job = bq_client.query(sql, location="asia-southeast2")
         query_job.result()
         first_load = False
         print(f"  [BQ] Insert complete.")
