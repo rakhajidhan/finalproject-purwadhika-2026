@@ -119,14 +119,37 @@ def scrape_listing_frontpage(year: int) -> list:
     resp = safe_get(url)
     soup = BeautifulSoup(resp.text, "html.parser")
 
-    items = soup.select("div.spost.clearfix") or soup.select("div.info-box")
-    logger.info(f"  [{year}] Front page: {len(items)} items found")
+    # ── Debug: log a snippet of the raw HTML to reveal actual structure ──
+    raw_snippet = resp.text[:3000]
+    logger.info(f"  [DEBUG] HTML snippet (first 3000 chars):\n{raw_snippet}")
+
+    # Try multiple container selectors used by Mahkamah Agung listing pages
+    items = (
+        soup.select("div.spost.clearfix")
+        or soup.select("div.info-box")
+        or soup.select("table.table tbody tr")
+        or soup.select("ul.direktori-list li")
+        or soup.select("div.col-md-12 table tr")
+    )
+    logger.info(f"  [{year}] Front page: {len(items)} containers found")
 
     rows = []
     for item in items:
         try:
-            title_tag = item.select_one("h3 a") or item.select_one("a.entry-title")
+            # Cast wide net for link — any <a> whose href points to a putusan detail
+            title_tag = (
+                item.select_one("h2 a")
+                or item.select_one("h3 a")
+                or item.select_one("h4 a")
+                or item.select_one("a.entry-title")
+                or item.select_one("td a[href*='putusan']")
+                or item.select_one("td a[href*='direktori']")
+                or item.select_one("a[href*='putusan']")
+                or item.select_one("a[href*='direktori']")
+            )
+
             if not title_tag:
+                logger.debug(f"  [DEBUG] No title_tag found in item: {str(item)[:200]}")
                 continue
 
             judul      = title_tag.get_text(strip=True)
@@ -141,12 +164,13 @@ def scrape_listing_frontpage(year: int) -> list:
                 "judul":      judul,
                 "url_detail": detail_url,
                 "tahun":      year,
-                "bulan":      None,   # not applicable for front-page scrape
+                "bulan":      None,
             })
         except Exception as e:
             logger.warning(f"  Listing parse error: {e}")
             continue
 
+    logger.info(f"  [{year}] Parsed {len(rows)} rows from {len(items)} containers")
     return rows
 
 
