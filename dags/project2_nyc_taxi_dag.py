@@ -7,7 +7,9 @@ sys.path.append("/opt/airflow/scripts/project2")
 from green_taxi_pipeline import process_month
 
 
-'''# ─── ALERT CALLBACK ───────────────────────────────────────
+# ─── ALERT CALLBACK ───────────────────────────────────────
+DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1481146832238280859/nlUPJbpkPKkq4WcJXU3lyPqwP8nGPqZJilN9ceJvXhepbOFczx1EAfXzXz1Jqml0kXjB"
+
 def on_failure_callback(context):
     import requests as req
 
@@ -24,12 +26,11 @@ def on_failure_callback(context):
         f"**Log:** {log_url}"
     )
 
-    DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/YOUR_WEBHOOK_HERE"
     try:
         req.post(DISCORD_WEBHOOK_URL, json={"content": message}, timeout=10)
         print("[ALERT] Failure notification sent to Discord.")
     except Exception as e:
-        print(f"[ALERT] Failed to send Discord notification: {e}")'''
+        print(f"[ALERT] Failed to send Discord notification: {e}")
 
 
 # ─── DEFAULT ARGS ─────────────────────────────────────────
@@ -37,7 +38,7 @@ default_args = {
     "owner"              : "rakha",
     "retries"            : 1,
     "retry_delay"        : timedelta(seconds=10),
-    #"on_failure_callback": on_failure_callback,
+    "on_failure_callback": on_failure_callback,
 }
 
 # ─── DAG ──────────────────────────────────────────────────
